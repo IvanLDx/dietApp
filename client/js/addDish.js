@@ -12,6 +12,18 @@ function hidePopup() {
 	$('.js-remove-popup').removeClass('activated');
 }
 
+function isFieldError(formData) {
+	let error = false;
+	if (!formData['dish-name']) {
+		console.info('Engade o nome do prato!!');
+		error = true;
+	} else if (!formData['season']) {
+		console.info('Engade unha tempada!');
+		error = true;
+	}
+	return error;
+}
+
 function submitModifyForm(e) {
 	submitForm(e, modifyDishForm, {
 		success: (res) => {
@@ -26,6 +38,7 @@ function submitAddForm(e) {
 		success: (res) => {
 			$('.js-dish-list').html(res);
 			$('.js-dish-name').val('');
+			$('.js-season-radio').uncheck();
 		}
 	});
 }
@@ -45,9 +58,8 @@ function submitForm(e, form, { success }) {
 	formData.state = $form.state;
 
 	e.preventDefault();
-	if (!formData['dish-name'] && !form.match('remove')) {
-		console.info('Engade o nome do prato!!');
-		return;
+	if (!form.match('remove')) {
+		if (isFieldError(formData)) return;
 	}
 
 	$.ajax({
@@ -55,7 +67,6 @@ function submitForm(e, form, { success }) {
 		data: formData,
 		success: (res) => {
 			if (res.success) {
-				console.info(res);
 				$.ajax({
 					url: $form.url,
 					data: { state: 'RefreshList' },

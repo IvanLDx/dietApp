@@ -2,7 +2,13 @@
 
 $state = $_REQUEST['state'];
 $res = new stdClass();
-$dishListFile = '../../data/dishList.json';
+$rootJsonFiles = '../../data';
+$dishListFile = "$rootJsonFiles/dishList.json";
+$fileUrl = (object)[
+    "summer" => "$rootJsonFiles/summerDishList.json",
+    "winter" => "$rootJsonFiles/winterDishList.json",
+    "halftime" => "$rootJsonFiles/halftimeDishList.json"
+];
 $dishList = json_decode(file_get_contents($dishListFile));
 
 switch ($state) {
@@ -25,10 +31,12 @@ switch ($state) {
 
 function addDish($res) {
     $dishName = $_REQUEST['dish-name'];
+    $season = $_REQUEST['season'];
+    $seasonFile = $GLOBALS['fileUrl']->$season;
     $newContent = (object)[
         "name" => $dishName
     ];
-    $dishList = $GLOBALS['dishList'];
+    $dishList = json_decode(file_get_contents($seasonFile));
 
     foreach ($dishList as $dish) {
         if ($dish->name === $dishName) {
@@ -40,20 +48,20 @@ function addDish($res) {
         $res->error = true;
         $res->message = 'Este prato xa existe!';
     } else {
-        $existsID = true;
+        $existsID = false;
         $id = createID();
-        while ($existsID) {
+        do {
             foreach($dishList as $dish) {
                 if ($dish->id === $id) {
                     $id = createID();
-                } else {
-                    $existsID = false;
+                    $existsID = true;
                 }
             }
-        }
+
+        } while ($existsID);
         $newContent->id = $id;
         $dishList[] = $newContent;
-        saveJSONFile($dishList);
+        saveJSONFile($dishList, $seasonFile);
 
         $res->success = true;
         $res->message = 'O prato foi engadido á lista';
@@ -93,7 +101,12 @@ function removeDish($res) {
 }
 
 function refreshList() {
-    $dishList = json_decode(file_get_contents('../../data/dishList.json'));
+    $dishList = (object)[
+        "summer" => json_decode(file_get_contents('../../data/summerDishList.json')),
+        "winter" => json_decode(file_get_contents('../../data/winterDishList.json')),
+        "halftime" => json_decode(file_get_contents('../../data/halftimeDishList.json'))
+    ];
+
     $ico = (object)[
         "modify" => "../../client/static/svg/modify.svg",
         "remove" => "../../client/static/svg/remove.svg"
@@ -111,9 +124,9 @@ function createID() {
     return $idFormat;
 }
 
-function saveJSONFile($dishList) {
+function saveJSONFile($dishList, $seasonFile) {
     if (isset($dishList) && count($dishList) > 0) {
-        file_put_contents($GLOBALS['dishListFile'], json_encode($dishList, JSON_PRETTY_PRINT));
+        file_put_contents($seasonFile, json_encode($dishList, JSON_PRETTY_PRINT));
     }
 }
 

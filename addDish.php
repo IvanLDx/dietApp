@@ -13,7 +13,11 @@
 
             <div class="dish-list js-dish-list">
                 <?php
-                $dishList = json_decode(file_get_contents('./data/dishList.json'));
+                $dishList = (object)[
+                    "summer" => json_decode(file_get_contents('./data/summerDishList.json')),
+                    "winter" => json_decode(file_get_contents('./data/winterDishList.json')),
+                    "halftime" => json_decode(file_get_contents('./data/halftimeDishList.json'))
+                ];
                 $svgFolder = "./client/static/svg";
                 $ico = (object)[
                     "modify" => "$svgFolder/modify.svg",

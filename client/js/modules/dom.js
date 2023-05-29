@@ -97,6 +97,11 @@ export const $ = function $(name) {
 		});
 	};
 
+	selves.uncheck = () => {
+		selves.forEach((self) => {
+			self.uncheck();
+		});
+	};
 	if (selves[0]) {
 		switch (selves[0].nodeName) {
 			case 'FORM':
@@ -139,6 +144,9 @@ $.selfFunctions = (self) => {
 		} else {
 			return self.value;
 		}
+	};
+	self.uncheck = () => {
+		self.checked = false;
 	};
 	self.find = (name) => {
 		let closest = self.closest(name);
