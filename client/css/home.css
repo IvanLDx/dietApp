@@ -1,0 +1,4 @@
+.menu-home {
+    pointer-events: none;
+    background-color: var(--blue);
+}

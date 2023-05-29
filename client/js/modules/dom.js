@@ -97,6 +97,24 @@ export const $ = function $(name) {
 		});
 	};
 
+	selves.txt = (val) => {
+		selves.forEach((self) => {
+			self.textContent = val;
+		});
+	};
+
+	selves.check = () => {
+		selves.forEach((self) => {
+			self.check();
+		});
+	};
+
+	selves.uncheck = () => {
+		selves.forEach((self) => {
+			self.uncheck();
+		});
+	};
+
 	if (selves[0]) {
 		switch (selves[0].nodeName) {
 			case 'FORM':
@@ -140,7 +158,13 @@ $.selfFunctions = (self) => {
 			return self.value;
 		}
 	};
-	self.find = (name) => {
+	self.uncheck = () => {
+		self.checked = false;
+	};
+	self.check = () => {
+		self.checked = true;
+	};
+	self.parents = (name) => {
 		let closest = self.closest(name);
 		$.selfFunctions(closest);
 		return closest;

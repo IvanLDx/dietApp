@@ -1,112 +1,41 @@
 import { $ } from './modules/dom.js';
+import { formHelpers } from './addDish/formHelpers.js';
+import { modal, popup } from './components/modals.js';
 
 const dishForm = '.js-add-dish';
 const modifyDishForm = '.js-modify-form';
 const removeDishForm = '.js-remove-dish-popup';
 
-function hideModal() {
-	$('.js-modify-modal').removeClass('activated');
-}
-
-function hidePopup() {
-	$('.js-remove-popup').removeClass('activated');
-}
-
-function submitModifyForm(e) {
-	submitForm(e, modifyDishForm, {
-		success: (res) => {
-			$('.js-dish-list').html(res);
-			hideModal();
-		}
-	});
-}
-
-function submitAddForm(e) {
-	submitForm(e, dishForm, {
-		success: (res) => {
-			$('.js-dish-list').html(res);
-			$('.js-dish-name').val('');
-		}
-	});
-}
-
-function submitRemoveForm(e) {
-	submitForm(e, removeDishForm, {
-		success: (res) => {
-			$('.js-dish-list').html(res);
-			hidePopup();
-		}
-	});
-}
-
-function submitForm(e, form, { success }) {
-	let formData = $.ajax.serialize(form);
-	let $form = $(form);
-	formData.state = $form.state;
-
-	e.preventDefault();
-	if (!formData['dish-name'] && !form.match('remove')) {
-		console.info('Engade o nome do prato!!');
-		return;
+function keyEnterEvents(e) {
+	if ($('.js-modify-modal').containsClass('activated')) {
+		formHelpers.submitModifyForm(e, modifyDishForm);
+	} else if ($('.js-remove-popup').containsClass('activated')) {
+		formHelpers.submitRemoveForm(e, removeDishForm);
+	} else {
+		formHelpers.submitAddForm(e, dishForm);
 	}
-
-	$.ajax({
-		url: $form.url,
-		data: formData,
-		success: (res) => {
-			if (res.success) {
-				console.info(res);
-				$.ajax({
-					url: $form.url,
-					data: { state: 'RefreshList' },
-					success: (res) => {
-						success(res);
-					}
-				});
-			}
-		}
-	});
-}
-
-function openModifyDishModal(e) {
-	let $dish = e.find('.js-dish-element-list');
-	let dishID = $dish.attr('data-id');
-	let dishName = $dish.attr('data-name');
-	$('.js-dish-id').val(dishID);
-	$('.js-dish-modify-name').val(dishName);
-
-	let $modifyModal = $('.js-modify-modal');
-	$modifyModal.addClass('activated');
-	hidePopup();
-	$('.js-dish-modify-name')[0].focus();
 }
 
 $(dishForm)[0].onsubmit = (e) => {
-	submitAddForm(e);
+	formHelpers.submitAddForm(e, dishForm);
 };
 
 $(modifyDishForm)[0].onsubmit = (e) => {
-	submitModifyForm(e);
+	formHelpers.submitModifyForm(e, modifyDishForm);
 };
 
 $(removeDishForm)[0].onsubmit = (e) => {
-	submitRemoveForm(e);
+	formHelpers.submitRemoveForm(e, removeDishForm);
 };
 
 document.onkeydown = (e) => {
 	switch (e.key) {
 		case 'Enter':
-			if ($('.js-modify-modal').containsClass('activated')) {
-				submitModifyForm(e);
-			} else if ($('.js-remove-popup').containsClass('activated')) {
-				submitRemoveForm(e);
-			} else {
-				submitAddForm(e);
-			}
+			keyEnterEvents(e);
 			break;
 		case 'Escape':
-			hideModal();
-			hidePopup();
+			modal.hide();
+			popup.hide();
 			break;
 		default:
 			break;
@@ -114,19 +43,17 @@ document.onkeydown = (e) => {
 };
 
 $.click('.js-modify-dish', (e) => {
-	openModifyDishModal(e);
+	modal.show(e);
 });
 
 $.click('.js-remove-dish', (e) => {
-	let $dish = e.find('.js-dish-element-list');
-	$('.js-remove-popup').addClass('activated');
-	$('.js-dish-id-popup').val($dish.attr('data-id'));
+	popup.show(e);
 });
 
 $.click('.js-close-modal', () => {
-	hideModal();
+	modal.hide();
 });
 
 $.click('.js-close-popup', () => {
-	hidePopup();
+	popup.hide();
 });

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <?php include ("./templates/head.php") ?>
+    <link rel="stylesheet" href="./client/css/home.css">
 </head>
 <body>
     <div class="js-page page">
