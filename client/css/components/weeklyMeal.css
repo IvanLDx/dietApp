@@ -1,0 +1,11 @@
+.weekly-meal {
+    background-color: var(--red);
+    left: 105%;
+    transition-delay: 1s;
+}
+
+.page.weekly-meal-active .weekly-meal {
+    left: 0;
+    z-index: 2;
+    transition-delay: 0s;
+}

@@ -1,0 +1,11 @@
+.dish-list {
+    background-color: var(--brown);
+    top: -105%;
+    transition-delay: 1s;
+}
+
+.page.dish-list-active .dish-list {
+    top: 0;
+    z-index: 2;
+    transition-delay: 0s;
+}

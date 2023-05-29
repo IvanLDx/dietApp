@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" viewBox="0 0 12 12" zoomAndPan="magnify">
+    <g style="fill: rgb(83, 64, 60)">
+        <path d="M0 0 L8 6 L0 12 Z" />
+        <path d="M8 0 H12 V12 H8 Z" />
+    </g>
+</svg>

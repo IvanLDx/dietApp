@@ -1,0 +1,344 @@
+[
+    {
+        "name": "As Efem\u00e9ridas",
+        "id": "asefemeridas",
+        "content": [
+            {
+                "id": "asefemeridas_1-1",
+                "name": "Somos galegos e non nos entendemos \/ A venda do San Marcos",
+                "date": "2023-05-01",
+                "season": "1",
+                "episode": "1"
+            },
+            {
+                "id": "asefemeridas_1-2",
+                "name": "As romar\u00edas fake \/ A primeira obra de teatro en Compostela",
+                "date": "2023-05-01",
+                "season": "1",
+                "episode": "2"
+            },
+            {
+                "id": "asefemeridas_1-3",
+                "name": "Abraham condenado a pagar \/ Un dos manuscritos m\u00e1is belos",
+                "date": "2023-05-01",
+                "season": "1",
+                "episode": "3"
+            },
+            {
+                "id": "asefemeridas_1-4",
+                "name": "Os cazadores de lobos \/ Antonio Ventura Xos\u00e9 Baamonde",
+                "date": "",
+                "season": "1",
+                "episode": "4"
+            },
+            {
+                "id": "asefemeridas_1-5",
+                "name": "O duque de Lancaster \/ Catalina Pernas",
+                "date": "2023-05-01",
+                "season": "1",
+                "episode": "5"
+            },
+            {
+                "id": "asefemeridas_1-6",
+                "name": "As festas minervais \/ O bispo Hermenexildo",
+                "date": "",
+                "season": "1",
+                "episode": "6"
+            },
+            {
+                "id": "asefemeridas_1-7",
+                "name": "O incendio de Compostela \/ O incendio de Pontedeume",
+                "date": "",
+                "season": "1",
+                "episode": "7"
+            },
+            {
+                "id": "asefemeridas_1-8",
+                "name": "Roubo de libros \/ A orixe da filloa",
+                "date": "",
+                "season": "1",
+                "episode": "8"
+            },
+            {
+                "id": "asefemeridas_1-9",
+                "name": "A normand\u00eda galega \/ Os rituais de posesi\u00f3n",
+                "date": "",
+                "season": "1",
+                "episode": "9"
+            },
+            {
+                "id": "asefemeridas_1-10",
+                "name": "O Conde Santo \/ A publicaci\u00f3n do Teatro cr\u00edtico universal",
+                "date": "",
+                "season": "1",
+                "episode": "10"
+            },
+            {
+                "id": "asefemeridas_2-1",
+                "name": "As orfas de Ferrol \/ A cova do Pico Sacro",
+                "date": "",
+                "season": "2",
+                "episode": "1"
+            },
+            {
+                "id": "asefemeridas_2-2",
+                "name": "A subida de soldo a María Pita / O primeiro tren de Galicia",
+                "date": "",
+                "season": "2",
+                "episode": "2"
+            },
+            {
+                "id": "asefemeridas_2-3",
+                "name": "As decapitacións da Rocha Forte / Os Churrichaos",
+                "date": "",
+                "season": "2",
+                "episode": "3"
+            },
+            {
+                "id": "asefemeridas_2-4",
+                "name": "A tortura de María Soliña / Os libros prestados de Lugo",
+                "date": "",
+                "season": "2",
+                "episode": "4"
+            },
+            {
+                "id": "asefemeridas_2-5",
+                "name": "O exército romano en Galicia",
+                "date": "",
+                "season": "2",
+                "episode": "5"
+            },
+            {
+                "id": "asefemeridas_2-6",
+                "name": "Vigo contra Pontevedra pola capitalidade / O ventrílocuo Eugenio Valder",
+                "date": "",
+                "season": "2",
+                "episode": "6"
+            },
+            {
+                "id": "asefemeridas_2-7",
+                "name": "O día de defuntos / Os costumes galegos",
+                "date": "",
+                "season": "2",
+                "episode": "7"
+            },
+            {
+                "id": "asefemeridas_2-8",
+                "name": "Pantasmas históricas",
+                "date": "",
+                "season": "2",
+                "episode": "8"
+            },
+            {
+                "id": "asefemeridas_2-9",
+                "name": "Os impostos en Galicia / A carta de perdón de cornos",
+                "date": "",
+                "season": "2",
+                "episode": "9"
+            },
+            {
+                "id": "asefemeridas_2-10",
+                "name": "App para explorar a historia en realidade aumentada",
+                "date": "",
+                "season": "2",
+                "episode": "10"
+            },
+            {
+                "id": "asefemeridas_2-11",
+                "name": "Os mercados na Idade Media / Pedro Sarmiento de Gamboa",
+                "date": "",
+                "season": "2",
+                "episode": "11"
+            },
+            {
+                "id": "asefemeridas_2-12",
+                "name": "San Rosendo de Celanova / As baleas en Galicia",
+                "date": "",
+                "season": "2",
+                "episode": "12"
+            },
+            {
+                "id": "asefemeridas_2-13",
+                "name": "Paul Watson contra os baleeiros / John Adams en Galicia",
+                "date": "",
+                "season": "2",
+                "episode": "13"
+            },
+            {
+                "id": "asefemeridas_2-14",
+                "name": "O testamento de Pardo de Cela / O Valadouro",
+                "date": "",
+                "season": "2",
+                "episode": "14"
+            },
+            {
+                "id": "asefemeridas_2-15",
+                "name": "O solsticio de inverno",
+                "date": "",
+                "season": "2",
+                "episode": "15"
+            },
+            {
+                "id": "asefemeridas_2-16",
+                "name": "Asociación do folclore galego / ",
+                "date": "",
+                "season": "2",
+                "episode": "16"
+            },
+            {
+                "id": "asefemeridas_2-17",
+                "name": "2-17",
+                "date": "",
+                "season": "2",
+                "episode": "17"
+            },
+            {
+                "id": "asefemeridas_2-18",
+                "name": "2-18",
+                "date": "",
+                "season": "2",
+                "episode": "18"
+            },
+            {
+                "id": "asefemeridas_2-19",
+                "name": "2-19",
+                "date": "",
+                "season": "2",
+                "episode": "19"
+            },
+            {
+                "id": "asefemeridas_2-20",
+                "name": "2-20",
+                "date": "",
+                "season": "2",
+                "episode": "20"
+            },
+            {
+                "id": "asefemeridas_2-21",
+                "name": "2-21",
+                "date": "",
+                "season": "2",
+                "episode": "21"
+            },
+            {
+                "id": "asefemeridas_2-22",
+                "name": "2-22",
+                "date": "",
+                "season": "2",
+                "episode": "22"
+            },
+            {
+                "id": "asefemeridas_2-23",
+                "name": "2-23",
+                "date": "",
+                "season": "2",
+                "episode": "23"
+            },
+            {
+                "id": "asefemeridas_2-24",
+                "name": "2-24",
+                "date": "",
+                "season": "2",
+                "episode": "24"
+            },
+            {
+                "id": "asefemeridas_2-25",
+                "name": "2-25",
+                "date": "",
+                "season": "2",
+                "episode": "25"
+            },
+            {
+                "id": "asefemeridas_2-26",
+                "name": "2-26",
+                "date": "",
+                "season": "2",
+                "episode": "26"
+            },
+            {
+                "id": "asefemeridas_2-27",
+                "name": "2-27",
+                "date": "",
+                "season": "2",
+                "episode": "27"
+            },
+            {
+                "id": "asefemeridas_2-28",
+                "name": "2-28",
+                "date": "",
+                "season": "2",
+                "episode": "28"
+            },
+            {
+                "id": "asefemeridas_2-29",
+                "name": "2-29",
+                "date": "",
+                "season": "2",
+                "episode": "29"
+            },
+            {
+                "id": "asefemeridas_2-30",
+                "name": "2-30",
+                "date": "",
+                "season": "2",
+                "episode": "30"
+            },
+            {
+                "id": "asefemeridas_2-31",
+                "name": "2-31",
+                "date": "",
+                "season": "2",
+                "episode": "31"
+            },
+            {
+                "id": "asefemeridas_2-32",
+                "name": "2-32",
+                "date": "",
+                "season": "2",
+                "episode": "32"
+            },
+            {
+                "id": "asefemeridas_2-33",
+                "name": "2-33",
+                "date": "",
+                "season": "2",
+                "episode": "33"
+            },
+            {
+                "id": "asefemeridas_2-34",
+                "name": "2-34",
+                "date": "",
+                "season": "2",
+                "episode": "34"
+            },
+            {
+                "id": "asefemeridas_2-35",
+                "name": "2-35",
+                "date": "",
+                "season": "2",
+                "episode": "35"
+            },
+            {
+                "id": "asefemeridas_2-36",
+                "name": "2-36",
+                "date": "",
+                "season": "2",
+                "episode": "36"
+            },
+            {
+                "id": "asefemeridas_2-37",
+                "name": "2-37",
+                "date": "",
+                "season": "2",
+                "episode": "37"
+            },
+            {
+                "id": "asefemeridas_2-38",
+                "name": "2-38",
+                "date": "",
+                "season": "2",
+                "episode": "38"
+            }
+        ]
+    }
+]
