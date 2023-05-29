@@ -12,6 +12,9 @@ switch ($state) {
     case 'Modify':
         modifyDish($res);
         break;
+    case 'Remove':
+        removeDish($res);
+        break;
     case 'RefreshList':
         refreshList();
         return;
@@ -60,8 +63,6 @@ function addDish($res) {
 function modifyDish($res) {
     $dishName = $_REQUEST['dish-name'];
     $dishID = $_REQUEST['dish-id'];
-    // $res->dish = $dishName;
-    // $res->id = $dishID;
     $dishList = $GLOBALS['dishList'];
 
     foreach ($dishList as $dish) {
@@ -73,6 +74,22 @@ function modifyDish($res) {
     saveJSONFile($dishList);
     $res->success = true;
     $res->message = 'O prato foi modificado!';
+}
+
+function removeDish($res) {
+    $dishID = $_REQUEST['dish-id'];
+    $res->id = $dishID;
+    $dishList = $GLOBALS['dishList'];
+
+    foreach ($dishList as $key => $dish) {
+        if ($dish->id === $dishID) {
+            array_splice($dishList, $key, 1);
+        }
+    }
+
+    saveJSONFile($dishList);
+
+    $res->success = true;
 }
 
 function refreshList() {

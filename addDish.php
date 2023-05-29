@@ -4,6 +4,7 @@
     <?php include ("./templates/head.php") ?>
     <link rel="stylesheet" href="./client/css/addDish.css">
     <link rel="stylesheet" href="./client/css/components/modifyModal.css">
+    <link rel="stylesheet" href="./client/css/components/removePopup.css">
 </head>
 <body>
     <div class="js-page page">
@@ -25,6 +26,7 @@
         <?php require('./templates/menu.php'); ?>
 
         <?php require('./templates/components/modifyModal.php'); ?>
+        <?php require('./templates/components/removePopup.php'); ?>
     </div>
 
     <script type="module" src="./client/js/main.js"></script>
