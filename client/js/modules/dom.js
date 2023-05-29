@@ -95,13 +95,15 @@ export const $ = function $(name) {
 		});
 	};
 
-	switch (selves[0].nodeName) {
-		case 'FORM':
-			[selves.url, selves.state] =
-				selves[0].attributes.action.value.split('-');
-			break;
-		default:
-			break;
+	if (selves[0]) {
+		switch (selves[0].nodeName) {
+			case 'FORM':
+				[selves.url, selves.state] =
+					selves[0].attributes.action.value.split('-');
+				break;
+			default:
+				break;
+		}
 	}
 
 	selves.forEach((self) => {
