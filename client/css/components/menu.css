@@ -1,0 +1,25 @@
+.menu-bottom {
+    position: fixed;
+    width: 100%;
+    background-color: var(--red);
+    color: var(--white);
+    bottom: 0;
+    display: flex;
+}
+
+.menu-bottom__list {
+    display: inline;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+} .menu-bottom__list:hover {
+    background-color: var(--blue);
+}
+
+.menu-bottom__link {
+    text-decoration: none;
+    display: block;
+    padding: 2rem;
+    color: var(--white);
+}
