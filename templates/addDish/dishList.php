@@ -3,7 +3,7 @@
     foreach ($dishList as $dish) { ?>
         <li class="js-dish-element-list" data-id="<?=$dish->id?>" data-name="<?=$dish->name?>">
             <span><?=$dish->name?></span>
-            <span class="ico remove">
+            <span class="ico remove js-remove-dish">
                 <?php require($ico->remove); ?>
             </span>
             <span class="ico modify js-modify-dish">

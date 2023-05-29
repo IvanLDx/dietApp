@@ -1,22 +1,40 @@
 import { $ } from './modules/dom.js';
 
-const $dishForm = $('.js-add-dish');
-const $modifyDishForm = $('.js-modify-form');
+const dishForm = '.js-add-dish';
+const modifyDishForm = '.js-modify-form';
+const removeDishForm = '.js-remove-dish-popup';
+
+function hideModal() {
+	$('.js-modify-modal').removeClass('activated');
+}
+
+function hidePopup() {
+	$('.js-remove-popup').removeClass('activated');
+}
 
 function submitModifyForm(e) {
-	submitForm(e, '.js-modify-form', {
+	submitForm(e, modifyDishForm, {
 		success: (res) => {
 			$('.js-dish-list').html(res);
-			$('.js-modify-modal').removeClass('activated');
+			hideModal();
 		}
 	});
 }
 
 function submitAddForm(e) {
-	submitForm(e, '.js-add-dish', {
+	submitForm(e, dishForm, {
 		success: (res) => {
 			$('.js-dish-list').html(res);
 			$('.js-dish-name').val('');
+		}
+	});
+}
+
+function submitRemoveForm(e) {
+	submitForm(e, removeDishForm, {
+		success: (res) => {
+			$('.js-dish-list').html(res);
+			hidePopup();
 		}
 	});
 }
@@ -27,15 +45,17 @@ function submitForm(e, form, { success }) {
 	formData.state = $form.state;
 
 	e.preventDefault();
-	if (!formData['dish-name']) {
+	if (!formData['dish-name'] && !form.match('remove')) {
 		console.info('Engade o nome do prato!!');
 		return;
 	}
+
 	$.ajax({
 		url: $form.url,
 		data: formData,
 		success: (res) => {
 			if (res.success) {
+				console.info(res);
 				$.ajax({
 					url: $form.url,
 					data: { state: 'RefreshList' },
@@ -48,29 +68,7 @@ function submitForm(e, form, { success }) {
 	});
 }
 
-$dishForm[0].onsubmit = (e) => {
-	submitAddForm(e);
-};
-
-$modifyDishForm[0].onsubmit = (e) => {
-	submitModifyForm(e);
-};
-
-document.onkeydown = (e) => {
-	switch (e.key) {
-		case 'Enter':
-			if ($('.js-modify-modal').containsClass('activated')) {
-				submitModifyForm(e);
-			} else {
-				submitAddForm(e);
-			}
-			break;
-		default:
-			break;
-	}
-};
-
-$.click('.js-modify-dish', (e) => {
+function openModifyDishModal(e) {
 	let $dish = e.find('.js-dish-element-list');
 	let dishID = $dish.attr('data-id');
 	let dishName = $dish.attr('data-name');
@@ -79,8 +77,56 @@ $.click('.js-modify-dish', (e) => {
 
 	let $modifyModal = $('.js-modify-modal');
 	$modifyModal.addClass('activated');
+	hidePopup();
+	$('.js-dish-modify-name')[0].focus();
+}
+
+$(dishForm)[0].onsubmit = (e) => {
+	submitAddForm(e);
+};
+
+$(modifyDishForm)[0].onsubmit = (e) => {
+	submitModifyForm(e);
+};
+
+$(removeDishForm)[0].onsubmit = (e) => {
+	submitRemoveForm(e);
+};
+
+document.onkeydown = (e) => {
+	switch (e.key) {
+		case 'Enter':
+			if ($('.js-modify-modal').containsClass('activated')) {
+				submitModifyForm(e);
+			} else if ($('.js-remove-popup').containsClass('activated')) {
+				submitRemoveForm(e);
+			} else {
+				submitAddForm(e);
+			}
+			break;
+		case 'Escape':
+			hideModal();
+			hidePopup();
+			break;
+		default:
+			break;
+	}
+};
+
+$.click('.js-modify-dish', (e) => {
+	openModifyDishModal(e);
 });
 
-$.click('.js-close-modal', (e) => {
-	$('.js-modify-modal').removeClass('activated');
+$.click('.js-remove-dish', (e) => {
+	let $dish = e.find('.js-dish-element-list');
+	$('.js-remove-popup').addClass('activated');
+	$('.js-dish-id-popup').val($dish.attr('data-id'));
+});
+
+$.click('.js-close-modal', () => {
+	hideModal();
+});
+
+$.click('.js-close-popup', () => {
+	hidePopup();
 });
