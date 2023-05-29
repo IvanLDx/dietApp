@@ -1,0 +1,65 @@
+.modify-modal {
+    display: none;
+}
+
+.modify-modal.activated {
+    display: block;
+}
+
+.modify-modal__backdrop {
+    opacity: 0;
+    transition: opacity 0.2s;
+    background-color: var(--red-transparent);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modify-modal.activated .modify-modal__backdrop {
+    opacity: 1;
+}
+
+.modify-modal.activated .modify-modal__wrapper {
+    animation: modalAppears 0.5s;
+}
+
+.modify-modal__wrapper {
+    min-width: 90%;
+    min-height: 40%;
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 30%);
+    background-color: var(--white);
+    box-shadow: -10px 10px 0px var(--red-transparent);
+    opacity: 1;
+    padding: 1rem;
+}
+
+.modify-modal .modify-accept:hover {
+    background-color: var(--blue);
+}
+
+input,
+button {
+    margin-top: 0.5rem;
+}
+
+button {
+    background-color: var(--red);
+} button:hover {
+    background-color: var(--yellow);
+}
+
+@keyframes modalAppears {
+    0% {
+        bottom: 46%;
+        opacity: 0;
+    }
+    100% {
+        bottom: 50%;
+        opacity: 1;
+    }
+}
