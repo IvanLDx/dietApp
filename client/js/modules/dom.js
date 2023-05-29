@@ -57,9 +57,11 @@ export const $ = function $(name) {
 	};
 
 	selves.containsClass = (val) => {
+		let containsThisClass = false;
 		selves.forEach((self) => {
-			self.containsClass(val);
+			containsThisClass = self.containsClass(val);
 		});
+		return containsThisClass;
 	};
 
 	selves.removeClass = (val) => {
@@ -114,11 +116,15 @@ export const $ = function $(name) {
 };
 
 $.selfFunctions = (self) => {
+	if (!self) return;
+
 	self.getID = () => self.dataset?.id;
 	self.getAudioUrl = () => self.dataset?.season + '/' + self.dataset?.episode;
 	self.html = (val) => (self.innerHTML = val);
 	self.addClass = (val) => self.classList.add(val);
-	self.containsClass = (val) => self.classList.contains(val);
+	self.containsClass = (val) => {
+		return self.classList.contains(val);
+	};
 	self.removeClass = (val) => self.classList.remove(val);
 	self.attr = (attr, val) => {
 		if (val) {
@@ -135,7 +141,9 @@ $.selfFunctions = (self) => {
 		}
 	};
 	self.find = (name) => {
-		return $(self.querySelectorAll(name));
+		let closest = self.closest(name);
+		$.selfFunctions(closest);
+		return closest;
 	};
 	return self;
 };

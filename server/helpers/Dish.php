@@ -9,6 +9,9 @@ switch ($state) {
     case 'Add':
         addDish($res);
         break;
+    case 'Modify':
+        modifyDish($res);
+        break;
     case 'RefreshList':
         refreshList();
         return;
@@ -47,16 +50,37 @@ function addDish($res) {
         }
         $newContent->id = $id;
         $dishList[] = $newContent;
-        if (isset($dishList) && count($dishList) > 0) {
-            file_put_contents($GLOBALS['dishListFile'], json_encode($dishList, JSON_PRETTY_PRINT));
-        }
+        saveJSONFile($dishList);
+
         $res->success = true;
         $res->message = 'O prato foi engadido á lista';
     }
 }
 
+function modifyDish($res) {
+    $dishName = $_REQUEST['dish-name'];
+    $dishID = $_REQUEST['dish-id'];
+    // $res->dish = $dishName;
+    // $res->id = $dishID;
+    $dishList = $GLOBALS['dishList'];
+
+    foreach ($dishList as $dish) {
+        if ($dish->id === $dishID) {
+            $dish->name = $dishName;
+        }
+    }
+
+    saveJSONFile($dishList);
+    $res->success = true;
+    $res->message = 'O prato foi modificado!';
+}
+
 function refreshList() {
     $dishList = json_decode(file_get_contents('../../data/dishList.json'));
+    $ico = (object)[
+        "modify" => "../../client/static/svg/modify.svg",
+        "remove" => "../../client/static/svg/remove.svg"
+    ];
     require('../../templates/addDish/dishList.php');
 }
 
@@ -68,6 +92,12 @@ function createID() {
     }
 
     return $idFormat;
+}
+
+function saveJSONFile($dishList) {
+    if (isset($dishList) && count($dishList) > 0) {
+        file_put_contents($GLOBALS['dishListFile'], json_encode($dishList, JSON_PRETTY_PRINT));
+    }
 }
 
 echo json_encode($res);

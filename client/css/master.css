@@ -27,6 +27,7 @@ label {
     cursor: pointer;
 }
 
+button,
 input {
     width: 100%;
     display: block;
@@ -38,12 +39,14 @@ input {
     font-weight: 100;
 }
 
+button,
 input[type="submit"] {
     background-color: var(--black);
     color: var(--white);
     cursor: pointer;
     transition: 0.2s;
-} input[type="submit"]:hover {
+} button:hover,
+input[type="submit"]:hover {
     background-color: var(--red);
 }
 
