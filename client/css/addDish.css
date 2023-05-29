@@ -5,12 +5,23 @@
 
 .content {
     padding: 2rem;
+    height: calc(100vh - 76px);
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--yellow) transparent;
 }
 
 @media (max-width: 678px) {
     .content {
         padding: 1rem;
     }
+}
+
+.input__container {
+    position: sticky;
+    background-color: var(--white);
+    top: -20px;
+    z-index: 1;
 }
 
 .submit {
@@ -97,4 +108,23 @@
 
 .season-inputs input {
     display: none;
+}
+
+.tags + .span {
+    display: none;
+}
+
+.tags:empty + .span {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+} .tags:empty + .span:hover {
+    text-decoration: underline;
+} .tags + .span::after {
+    content: "";
+    position: absolute;
+    left: 110%;
+    border: 10px solid var(--brown);
+    border-color: transparent transparent transparent var(--brown);
+    transform: scaleY(0.69) translateY(2px);
 }

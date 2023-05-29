@@ -59,6 +59,7 @@ function addDish($res) {
             }
 
         } while ($existsID);
+
         $newContent->id = $id;
         $dishList[] = $newContent;
         saveJSONFile($dishList, $seasonFile);
@@ -71,23 +72,55 @@ function addDish($res) {
 function modifyDish($res) {
     $dishName = $_REQUEST['dish-name'];
     $dishID = $_REQUEST['dish-id'];
-    $dishList = $GLOBALS['dishList'];
+    $season = $_REQUEST['season'];
+    $seasonFile = $GLOBALS['fileUrl']->$season;
+    $dishList = json_decode(file_get_contents($seasonFile));
+    $isInThisSeason = false;
 
     foreach ($dishList as $dish) {
         if ($dish->id === $dishID) {
             $dish->name = $dishName;
+            $isInThisSeason = true;
         }
     }
 
-    saveJSONFile($dishList);
+    if ($isInThisSeason) {
+        saveJSONFile($dishList, $seasonFile);
+    } else {
+        removeDishGlobalSeasons($res);
+        addDish($res);
+    }
+
     $res->success = true;
     $res->message = 'O prato foi modificado!';
 }
 
+function removeDishGlobalSeasons($res) {
+    $dishID = $_REQUEST['dish-id'];
+    $dishFoundInFile = false;
+    foreach ($GLOBALS['fileUrl'] as $i => $fileUrl) {
+        $dishList = json_decode(file_get_contents($fileUrl));
+
+        if (!$dishFoundInFile) {
+            foreach ($dishList as $key => $dish) {
+                if ($dish->id === $dishID && !$dishFoundInFile) {
+                    array_splice($dishList, $key, 1);
+                    $dishFoundInFile = true;
+                    $currentSession = $i;
+                    $currentList = $dishList;
+                }
+            }
+        }
+    }
+
+    saveJSONFile($currentList, $GLOBALS['fileUrl']->$currentSession);
+}
+
 function removeDish($res) {
     $dishID = $_REQUEST['dish-id'];
-    $res->id = $dishID;
-    $dishList = $GLOBALS['dishList'];
+    $season = $_REQUEST['season'];
+    $seasonFile = $GLOBALS['fileUrl']->$season;
+    $dishList = json_decode(file_get_contents($seasonFile));
 
     foreach ($dishList as $key => $dish) {
         if ($dish->id === $dishID) {
@@ -95,7 +128,7 @@ function removeDish($res) {
         }
     }
 
-    saveJSONFile($dishList);
+    saveJSONFile($dishList, $seasonFile);
 
     $res->success = true;
 }
