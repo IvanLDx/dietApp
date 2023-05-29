@@ -52,6 +52,7 @@ input[type="submit"]:hover {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--brown);
 }
 
 h2 {

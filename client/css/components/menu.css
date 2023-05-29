@@ -20,6 +20,24 @@
 .menu-bottom__link {
     text-decoration: none;
     display: block;
-    padding: 2rem;
+    padding: 1rem;
     color: var(--white);
+}
+
+.menu-bottom svg {
+    width: 40px;
+}
+
+.menu-bottom svg path {
+    fill: var(--white);
+}
+
+.menu-bottom svg .add {
+    fill: transparent;
+    stroke: var(--white);
+}
+
+.menu-bottom svg .calendar {
+    fill: transparent;
+    stroke: var(--white);
 }
