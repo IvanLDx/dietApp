@@ -5,3 +5,14 @@
 .submit {
     margin-top: 1rem;
 }
+
+.dish-list {
+    margin-top: 1rem;
+}
+
+.dish-list li {
+    border: 1px solid var(--brown);
+    margin-bottom: 0.4rem;
+    padding: 0.4rem;
+    border-radius: 4px;
+}

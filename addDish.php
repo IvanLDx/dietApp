@@ -10,7 +10,8 @@
             <?php require('./templates/addDish/inputs.php'); ?>
 
             <div class="dish-list js-dish-list">
-
+                <?php $dishList = json_decode(file_get_contents('./data/dishList.json')); ?>
+                <?php require('./templates/addDish/dishList.php'); ?>
             </div>
         </div>
 

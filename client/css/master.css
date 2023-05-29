@@ -55,6 +55,10 @@ h2 {
     font-family: Alba;
 }
 
+ul {
+    list-style: none;
+}
+
 .page {
     min-height: 100vh;
     background-color: var(--white);
