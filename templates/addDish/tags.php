@@ -12,12 +12,14 @@
                 <?php require('./client/static/svg/tag-right.svg') ?>
             </div>
         </div>
-        <div class="tag-container js-tag-container">
+        <div class="tag-container js-tag-container listed" data-action="Tag-Remove">
+            
             <?php
             $tags = json_decode(file_get_contents('./data/tags.json'));
             $iconUrl = './client/static/svg/close.svg';
             require('./templates/tags/list.php');
             ?>
+
         </div>
     </div>
 

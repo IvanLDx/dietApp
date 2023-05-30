@@ -5,8 +5,6 @@ $res = new stdClass();
 $rootJsonFiles = '../../data';
 $fileUrl = "$rootJsonFiles/tags.json";
 
-$res->asdasd = $state;
-
 switch ($state) {
     case 'Add':
         addTag($res);
@@ -65,18 +63,20 @@ function addTag($res) {
 }
 
 function removeTag($res) {
-    $dishID = $_REQUEST['dish-id'];
-    $season = $_REQUEST['season'];
-    $seasonFile = $GLOBALS['fileUrl']->$season;
-    $dishList = json_decode(file_get_contents($seasonFile));
+    $tagID = $_REQUEST['tag-id'];
 
-    foreach ($dishList as $key => $dish) {
-        if ($dish->id === $dishID) {
-            array_splice($dishList, $key, 1);
+    $fileUrl = $GLOBALS['fileUrl'];
+    $tags = json_decode(file_get_contents($fileUrl));
+    
+    foreach ($tags as $key => $tag) {
+        $res->asd[]= $tag->id;
+        $res->asd[]= $tagID;
+        if ($tag->id === $tagID) {
+            array_splice($tags, $key, 1);
         }
     }
 
-    saveJSONFile($dishList, $seasonFile);
+    saveJSONFile($tags, $fileUrl);
 
     $res->success = true;
 }

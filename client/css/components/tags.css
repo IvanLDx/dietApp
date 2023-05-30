@@ -74,12 +74,28 @@
     cursor: pointer;
 }
 
-.tag-container {
+.tag-list {
+    display: none;
+}
+
+.listed .tag-list {
+    display: block;
     overflow: auto;
     scrollbar-width: thin;
     height: 247px;
     border-radius: 4px;
     padding: 0 4px;
+}
+
+.listed .confirm-remove-tag {
+    display: none;
+}
+
+.confirm-remove-tag {
+    display: block;
+    height: 100%;
+    background-color: var(--red-transparent);
+    height: 247px;
 }
 
 .tag-form-hidden {
@@ -114,4 +130,27 @@
 
 .tag-element.black-color svg {
     stroke: var(--brown);
+}
+
+.confirm-remove-tag {
+    padding: 2rem;
+}
+
+.confirm-remove-tag .confirm-button {
+    background-color: var(--black);
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 0.4rem;
+} .confirm-remove-tag .confirm-button:hover {
+    background-color: var(--white);
+    color: var(--brown);
+}
+
+.confirm-remove-tag .accept-remove-tag {
+    background-color: var(--red);
+    margin-top: 1rem;
 }

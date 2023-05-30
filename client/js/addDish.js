@@ -8,12 +8,32 @@ const modifyDishForm = '.js-modify-form';
 const removeDishForm = '.js-remove-dish-popup';
 
 function keyEnterEvents(e) {
+	let event = null;
 	if ($('.js-modify-modal').containsClass('activated')) {
-		formHelpers.submitModifyForm(e, modifyDishForm);
+		event = 'modify-dish';
 	} else if ($('.js-remove-popup').containsClass('activated')) {
-		formHelpers.submitRemoveForm(e, removeDishForm);
+		event = 'remove-dish';
+	} else if ($('.js-tag-check')[0].checked) {
+		event = 'remove-tag';
 	} else {
-		formHelpers.submitAddForm(e, dishForm);
+		event = 'add-dish';
+	}
+
+	switch (event) {
+		case 'add-dish':
+			formHelpers.submitAddForm(e, dishForm);
+			break;
+		case 'modify-dish':
+			formHelpers.submitModifyForm(e, modifyDishForm);
+			break;
+		case 'remove-dish':
+			formHelpers.submitRemoveForm(e, removeDishForm);
+			break;
+		case 'remove-tag':
+			$('.js-tag-submit')[0].click();
+			break;
+		default:
+			break;
 	}
 }
 
@@ -31,6 +51,7 @@ $(removeDishForm)[0].onsubmit = (e) => {
 
 tags.submitTag();
 tags.openTagsModal();
+tags.removeTag();
 
 document.onkeydown = (e) => {
 	switch (e.key) {
@@ -63,10 +84,6 @@ $.click('.js-close-popup', () => {
 	popup.hide();
 });
 
-$.click(
-	'.js-season-inputs, .js-dish-name, .js-submit-dish, .js-dish-element-list',
-	(e) => {
-		console.info(e);
-		tagModal.hide();
-	}
-);
+$.click('.js-season-inputs, .js-dish-name, .js-dish-element-list', (e) => {
+	tagModal.hide();
+});
