@@ -1,6 +1,6 @@
 import { $ } from './modules/dom.js';
 import { formHelpers } from './addDish/formHelpers.js';
-import { modal, popup } from './components/modals.js';
+import { modal, popup, tagModal } from './components/modals.js';
 import * as tags from './components/tags.js';
 
 const dishForm = '.js-add-dish';
@@ -30,6 +30,7 @@ $(removeDishForm)[0].onsubmit = (e) => {
 };
 
 tags.submitTag();
+tags.openTagsModal();
 
 document.onkeydown = (e) => {
 	switch (e.key) {
@@ -39,6 +40,7 @@ document.onkeydown = (e) => {
 		case 'Escape':
 			modal.hide();
 			popup.hide();
+			tagModal.hide();
 			break;
 		default:
 			break;
@@ -60,3 +62,11 @@ $.click('.js-close-modal', () => {
 $.click('.js-close-popup', () => {
 	popup.hide();
 });
+
+$.click(
+	'.js-season-inputs, .js-dish-name, .js-submit-dish, .js-dish-element-list',
+	(e) => {
+		console.info(e);
+		tagModal.hide();
+	}
+);

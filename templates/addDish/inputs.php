@@ -10,7 +10,7 @@
         require('./templates/addDish/tags.php');
         ?>
 
-        <input class="submit" type="submit" value="Dálle!">
+        <input class="submit js-submit-dish" type="submit" value="Dálle!">
     </form>
 
     <div class="tag-form-hidden">

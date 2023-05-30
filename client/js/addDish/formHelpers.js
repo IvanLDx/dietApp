@@ -93,8 +93,11 @@ formHelpers.submitRemoveForm = function (e, removeDishForm) {
 formHelpers.submitTagForm = function (e, removeTagForm) {
 	submitForm(e, removeTagForm, {
 		success: (res) => {
-			console.info(res);
-			$('.js-tag-check').uncheck();
+			$('.js-tag-container').html(res);
+			$('.js-tag-name-source').val('');
+			$('.js-tag-color-source').val('');
+			$('.js-tag-name-destination').val('');
+			$('.js-tag-color-destination').val('');
 		}
 	});
 };

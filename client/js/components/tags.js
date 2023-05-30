@@ -1,5 +1,6 @@
 import { $ } from '../modules/dom.js';
 import { formHelpers } from '../addDish/formHelpers.js';
+import { popup } from './modals.js';
 
 function submitTag() {
 	$.click('.js-tag-submit', () => {
@@ -9,9 +10,15 @@ function submitTag() {
 	});
 }
 
+function openTagsModal() {
+	$.click('.js-open-tag-modal', () => {
+		popup.hide();
+	});
+}
+
 $('.js-add-tag')[0].onsubmit = (e) => {
 	e.preventDefault();
 	formHelpers.submitTagForm(e, '.js-add-tag');
 };
 
-export { submitTag };
+export { submitTag, openTagsModal };

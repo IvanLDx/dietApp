@@ -79,8 +79,39 @@
     scrollbar-width: thin;
     height: 247px;
     border-radius: 4px;
+    padding: 0 4px;
 }
 
 .tag-form-hidden {
     display: none;
+}
+
+.tag-element {
+    display: inline-block;
+    padding: 0 6px 4px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.remove-tag svg {
+    position: relative;
+    top: 4px;
+    width: 18px;
+}
+
+.tag-element.white-color {
+    color: var(--white);
+}
+
+.tag-element.black-color {
+    color: var(--brown);
+}
+
+.tag-element.white-color svg {
+    stroke: var(--white);
+}
+
+.tag-element.black-color svg {
+    stroke: var(--brown);
 }

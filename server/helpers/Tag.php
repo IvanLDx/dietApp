@@ -82,17 +82,11 @@ function removeTag($res) {
 }
 
 function refreshTags() {
-    // $dishList = (object)[
-    //     "summer" => json_decode(file_get_contents('../../data/summerDishList.json')),
-    //     "winter" => json_decode(file_get_contents('../../data/winterDishList.json')),
-    //     "halftime" => json_decode(file_get_contents('../../data/halftimeDishList.json'))
-    // ];
+    $fileUrl = $GLOBALS['fileUrl'];
+    $tags = json_decode(file_get_contents($fileUrl));
+    $iconUrl = '../../client/static/svg/close.svg';
 
-    // $ico = (object)[
-    //     "modify" => "../../client/static/svg/modify.svg",
-    //     "remove" => "../../client/static/svg/remove.svg"
-    // ];
-    // require('../../templates/addDish/dishList.php');
+    require('../../templates/tags/list.php');
 }
 
 function createID() {

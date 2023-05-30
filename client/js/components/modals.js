@@ -41,3 +41,9 @@ export const popup = {
 		$('.js-dish-season-popup').val(dishData.season);
 	}
 };
+
+export const tagModal = {
+	hide: function () {
+		$('.js-tag-check').uncheck();
+	}
+};

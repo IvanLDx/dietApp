@@ -1,5 +1,5 @@
 <div class="tags-container">
-    <label for="tag-check" class="span">
+    <label for="tag-check" class="span js-open-tag-modal">
         <?php require('./client/static/svg/tag.svg') ?>
     </label>
     <input id="tag-check" class="tag-check js-tag-check" type="checkbox">
@@ -13,6 +13,11 @@
             </div>
         </div>
         <div class="tag-container js-tag-container">
+            <?php
+            $tags = json_decode(file_get_contents('./data/tags.json'));
+            $iconUrl = './client/static/svg/close.svg';
+            require('./templates/tags/list.php');
+            ?>
         </div>
     </div>
 
