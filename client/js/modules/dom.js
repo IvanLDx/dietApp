@@ -45,9 +45,17 @@ export const $ = function $(name) {
 	};
 
 	selves.val = (val) => {
+		let value = null;
 		selves.forEach((self) => {
-			self.val(val);
+			if (val) {
+				self.val(val);
+			} else {
+				value = self.val(val);
+			}
 		});
+		if (!val) {
+			return value;
+		}
 	};
 
 	selves.addClass = (val) => {

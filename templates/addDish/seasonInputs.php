@@ -1,4 +1,4 @@
-<div class="season-inputs">
+<div class="season-inputs js-season-inputs">
     <div class="summer-container">
         <input type="radio" name="season" value="summer" id="<?=$section?>-summer" class="js-season-radio">
         <label for="<?=$section?>-summer">Verán</label>

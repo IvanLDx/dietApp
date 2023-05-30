@@ -13,6 +13,15 @@ function isFieldError(formData) {
 	return error;
 }
 
+function isFieldTagError(formData) {
+	let error = false;
+	if (!formData['tag-name']) {
+		console.info('Engade o nome do prato!!');
+		error = true;
+	}
+	return error;
+}
+
 function submitForm(e, form, { success }) {
 	let formData = $.ajax.serialize(form);
 	let $form = $(form);
@@ -20,14 +29,23 @@ function submitForm(e, form, { success }) {
 
 	e.preventDefault();
 	if (!form.match('remove')) {
-		if (isFieldError(formData)) return;
+		switch ($form.url) {
+			case 'Dish':
+				if (isFieldError(formData)) return;
+				break;
+			case 'Tag':
+				if (isFieldTagError(formData)) return;
+				formData['tag-color'] = formData['tag-color'].replace('#', '');
+				break;
+			default:
+				break;
+		}
 	}
 
 	$.ajax({
 		url: $form.url,
 		data: formData,
 		success: (res) => {
-			console.info(res);
 			if (res.success) {
 				$.ajax({
 					url: $form.url,
@@ -36,6 +54,8 @@ function submitForm(e, form, { success }) {
 						success(res);
 					}
 				});
+			} else {
+				console.info(res.message);
 			}
 		}
 	});
@@ -66,6 +86,18 @@ formHelpers.submitRemoveForm = function (e, removeDishForm) {
 		success: (res) => {
 			$('.js-dish-list').html(res);
 			popup.hide();
+		}
+	});
+};
+
+formHelpers.submitTagForm = function (e, removeTagForm) {
+	submitForm(e, removeTagForm, {
+		success: (res) => {
+			$('.js-tag-container').html(res);
+			$('.js-tag-name-source').val('');
+			$('.js-tag-color-source').val('');
+			$('.js-tag-name-destination').val('');
+			$('.js-tag-color-destination').val('');
 		}
 	});
 };
