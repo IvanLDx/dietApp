@@ -3,6 +3,7 @@
 <head>
     <?php include ("./templates/head.php") ?>
     <link rel="stylesheet" href="./client/css/addDish.css">
+    <link rel="stylesheet" href="./client/css/components/tags.css">
     <link rel="stylesheet" href="./client/css/components/modifyModal.css">
     <link rel="stylesheet" href="./client/css/components/removePopup.css">
 </head>

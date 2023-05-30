@@ -6,12 +6,18 @@
         <?php
         $section = "main";
         require('./templates/addDish/seasonInputs.php');
+
+        require('./templates/addDish/tags.php');
         ?>
 
-        <div class="tags-container">
-            <div class="js-tags tags"></div>
-            <span class="span">Etiquitas</span>
-        </div>
         <input class="submit" type="submit" value="Dálle!">
     </form>
+
+    <div class="tag-form-hidden">
+        <form action="Tag-Add" method="GET" class="js-add-tag">
+            <input type="text" class="new-tag-name js-tag-name-destination" name="tag-name">
+            <input type="color" class="tag-color js-tag-color-destination" name="tag-color">
+            <input type="submit" class="tag-submit js-tag-submit-destination">
+        </form>
+    </div>
 </div>

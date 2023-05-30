@@ -3,13 +3,11 @@
 $state = $_REQUEST['state'];
 $res = new stdClass();
 $rootJsonFiles = '../../data';
-$dishListFile = "$rootJsonFiles/dishList.json";
 $fileUrl = (object)[
     "summer" => "$rootJsonFiles/summerDishList.json",
     "winter" => "$rootJsonFiles/winterDishList.json",
     "halftime" => "$rootJsonFiles/halftimeDishList.json"
 ];
-$dishList = json_decode(file_get_contents($dishListFile));
 
 switch ($state) {
     case 'Add':
