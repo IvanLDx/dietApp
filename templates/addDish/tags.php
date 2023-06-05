@@ -23,5 +23,6 @@
         </div>
     </div>
 
-    <div class="js-tags tags"></div>
+    <input type="hidden" class="js-tag-ids tag-ids" name="tags">
+    <ul class="js-tags tags"></ul>
 </div>

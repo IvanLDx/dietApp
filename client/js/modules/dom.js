@@ -72,6 +72,12 @@ export const $ = function $(name) {
 		return containsThisClass;
 	};
 
+	selves.createInnerElement = (elementType, params) => {
+		selves.forEach((self) => {
+			self.createInnerElement(elementType, params);
+		});
+	};
+
 	selves.removeClass = (val) => {
 		selves.forEach((self) => {
 			self.removeClass(val);
@@ -151,6 +157,28 @@ $.selfFunctions = (self) => {
 	self.containsClass = (val) => {
 		return self.classList.contains(val);
 	};
+	self.createInnerElement = (elementType, params) => {
+		let element = document.createElement(elementType);
+
+		if (params.class) {
+			let classes = params.class.split(' ');
+			classes.forEach((className) => {
+				element.classList.add(className);
+			});
+		}
+
+		if (params.text) {
+			element.textContent = params.text;
+		}
+
+		if (params.attr) {
+			params.attr.forEach((attr) => {
+				element.setAttribute(attr.key, attr.val);
+			});
+		}
+
+		self.append(element);
+	};
 	self.removeClass = (val) => self.classList.remove(val);
 	self.attr = (attr, val) => {
 		if (val) {
@@ -185,15 +213,18 @@ $.click = function (el, evt) {
 		let list = e.target.closest(el);
 		if (!list) {
 			let parent = e.target.parentElement;
-			while (
-				!parent.classList.contains(el) &&
-				parent.nodeName !== 'HTML'
-			) {
-				parent = parent.parentElement;
-			}
+			if (parent) {
+				while (
+					!parent.classList.contains(el) &&
+					parent.nodeName !== 'HTML'
+				) {
+					parent = parent.parentElement;
+				}
 
-			list = parent;
+				list = parent;
+			}
 		}
+		if (!list) return;
 		if (list.nodeName === 'BODY' || list.nodeName === 'HTML') {
 			return;
 		}
