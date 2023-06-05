@@ -1,5 +1,5 @@
 import { $ } from '../modules/dom.js';
-import { modal, popup } from '../components/modals.js';
+import { modal, popup, tagModal } from '../components/modals.js';
 
 function isFieldError(formData) {
 	let error = false;
@@ -63,11 +63,25 @@ function submitForm(e, form, { success }) {
 
 export const formHelpers = {};
 formHelpers.submitAddForm = function (e, dishForm) {
+	e.preventDefault();
+	let $tags = $('.js-tag-in-dish');
+	let $tagIDs = $('.js-tag-ids');
+	let tagsString = '';
+	$tags.forEach(($tag, i) => {
+		if (i !== 0) {
+			tagsString += ', ';
+		}
+		tagsString += $tag.attr('data-id');
+	});
+	$tagIDs.val(tagsString);
+
 	submitForm(e, dishForm, {
 		success: (res) => {
 			$('.js-dish-list').html(res);
 			$('.js-dish-name').val('');
 			$('.js-season-radio').uncheck();
+			$('.js-tags').html('');
+			tagModal.hide();
 		}
 	});
 };

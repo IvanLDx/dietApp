@@ -16,6 +16,7 @@ $seasons = [
         "title" => "entretempo"
     ]
 ];
+$tagsRaw = $tags;
 
 foreach ($seasons as $season) { ?>
     <p class="season-title">Pratos de <?=$season->title?></p>
@@ -29,7 +30,7 @@ foreach ($seasons as $season) { ?>
                     <?php
                         if (isset($dish->tags)) {
                             $tagIDs = explode(", ", $dish->tags);
-                            $tagsRaw = $tags;
+                            
                             $tags = [];
                             foreach ($tagIDs as $tagID) {
                                 foreach ($tagsRaw as $tag) {
@@ -38,7 +39,7 @@ foreach ($seasons as $season) { ?>
                                     }
                                 }
                             }
-                            require('./templates/tags/formattedList.php');
+                            require($formattedTagListUrl);
                         }
                     ?>
                 </div>

@@ -1,6 +1,7 @@
 import { $ } from '../modules/dom.js';
 import { formHelpers } from '../addDish/formHelpers.js';
 import { popup } from './modals.js';
+import { dishHelpers } from '../addDish/dishHelpers.js';
 
 function showTagList() {
 	$('.js-tag-container').addClass('listed');
@@ -56,23 +57,7 @@ function removeTag() {
 
 function selectTag($tagElement) {
 	let $tagContainer = $('.js-tags');
-	let textColor = 'white-color';
-	$tagElement.classList.forEach((className) => {
-		if (className.match('black-color')) textColor = className;
-	});
-	$tagContainer.createInnerElement('LI', {
-		class: 'tag-element js-tag-in-dish ' + textColor,
-		text: $tagElement.getAttribute('data-name'),
-		color: $tagElement.style.backgroundColor,
-		attr: [
-			{ key: 'data-id', val: $tagElement.getAttribute('data-id') },
-			{
-				key: 'style',
-				val:
-					'background-color: ' + $tagElement.style['background-color']
-			}
-		]
-	});
+	dishHelpers.createTagElement($tagContainer, $tagElement);
 }
 
 $('.js-add-tag')[0].onsubmit = (e) => {

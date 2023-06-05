@@ -41,6 +41,10 @@
     transition: 0.2s;
 }
 
+.dish-list .dish-element-list:hover {
+    background-color: var(--yellow);
+}
+
 .dish-list .dish-tags {
     display: inline-block;
     position: relative;

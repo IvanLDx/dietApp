@@ -43,6 +43,36 @@
     background-color: var(--blue);
 }
 
+.modify-modal .season-inputs {
+    margin-bottom: 0;
+}
+
+.modify-modal .span {
+    display: inline;
+}
+
+.modify-modal .span svg {
+    position: relative;
+    top: 10px;
+}
+
+.modify-modal .dish-tags {
+    display: inline-block;
+}
+
+.modify-modal .tag-element {
+    margin-left: 6px;
+    padding: 0 8px 2px 8px;
+}
+
+.yeh {
+    display: none;
+}
+
+.modify-modal .tag-check:checked + .yeh {
+    display: block;
+}
+
 input,
 button {
     margin-top: 0.5rem;

@@ -140,6 +140,12 @@ function refreshList() {
         "halftime" => json_decode(file_get_contents('../../data/halftimeDishList.json'))
     ];
 
+    $tags = json_decode(file_get_contents('../../data/tags.json'));
+
+    $formattedTagListUrl = '../../templates/tags/formattedList.php';
+
+    $iconUrl = '../../client/static/svg/close.svg';
+
     $ico = (object)[
         "modify" => "../../client/static/svg/modify.svg",
         "remove" => "../../client/static/svg/remove.svg"
