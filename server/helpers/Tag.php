@@ -1,5 +1,8 @@
 <?php
 
+require('../../server/models/Trilladeira.php');
+$tld = new Trilladeira();
+
 $state = $_REQUEST['state'];
 $res = new stdClass();
 $rootJsonFiles = '../../data';
@@ -21,9 +24,9 @@ switch ($state) {
 }
 
 function addTag($res) {
+    $tld = $GLOBALS['tld'];
     $tagName = $_REQUEST['tag-name'];
     $tagColor = $_REQUEST['tag-color'];
-    $res->asd = $tagColor;
     $fileUrl = $GLOBALS['fileUrl'];
     $newContent = (object)[
         "name" => $tagName,
@@ -33,7 +36,11 @@ function addTag($res) {
 
     foreach ($tagList as $tag) {
         if ($tag->name === $tagName) {
-            $exists = true;
+            if (isset($tag->removed)) {
+                $removedID = $tag->id;
+            } else {
+                $exists = true;
+            }
         }
     }
 
@@ -41,21 +48,30 @@ function addTag($res) {
         $res->error = true;
         $res->message = 'Esta etiqueta xa existe!';
     } else {
-        $existsID = false;
-        $id = createID();
-        do {
+        if (isset($removedID)) {
             foreach($tagList as $tag) {
-                if ($tag->id === $id) {
-                    $id = createID();
-                    $existsID = true;
+                if ($tag->id === $removedID) {
+                    unset($tag->removed);
+                    $tag->color = $tagColor;
                 }
             }
-
-        } while ($existsID);
-
-        $newContent->id = $id;
-        $tagList[] = $newContent;
-        saveJSONFile($tagList, $fileUrl);
+        } else {
+            $existsID = false;
+            $id = $tld->createID();
+            $res->id = $id;
+            do {
+                foreach($tagList as $tag) {
+                    if ($tag->id === $id) {
+                        $id = $tld->createID();
+                        $existsID = true;
+                    }
+                }
+            } while ($existsID);
+    
+            $newContent->id = $id;
+            $tagList[] = $newContent;
+        }
+        $tld->saveJSONFile($tagList, $fileUrl);
 
         $res->success = true;
         $res->message = 'A etiqueta foi engadida á lista';
@@ -64,19 +80,17 @@ function addTag($res) {
 
 function removeTag($res) {
     $tagID = $_REQUEST['tag-id'];
-
+    $tld = $GLOBALS['tld'];
     $fileUrl = $GLOBALS['fileUrl'];
     $tags = json_decode(file_get_contents($fileUrl));
     
     foreach ($tags as $key => $tag) {
-        $res->asd[]= $tag->id;
-        $res->asd[]= $tagID;
         if ($tag->id === $tagID) {
-            array_splice($tags, $key, 1);
+            $tag->removed = true;
         }
     }
 
-    saveJSONFile($tags, $fileUrl);
+    $tld->saveJSONFile($tags, $fileUrl);
 
     $res->success = true;
 }
@@ -87,22 +101,6 @@ function refreshTags() {
     $iconUrl = '../../client/static/svg/close.svg';
 
     require('../../templates/tags/list.php');
-}
-
-function createID() {
-    $idFormat = "############";
-
-    while (preg_match("/#/", $idFormat)) {
-        $idFormat = preg_replace("/#/", rand(0, 9), $idFormat, 1);
-    }
-
-    return $idFormat;
-}
-
-function saveJSONFile($dishList, $seasonFile) {
-    if (isset($dishList) && count($dishList) > 0) {
-        file_put_contents($seasonFile, json_encode($dishList, JSON_PRETTY_PRINT));
-    }
 }
 
 echo json_encode($res);

@@ -49,7 +49,6 @@ function removeTag() {
 		let action = $('.js-tag-container')[0].attr('data-action');
 		let [url, state] = action.split('-');
 
-		console.info($('.js-confirm-remove-tag'));
 		$.ajax({
 			url: url,
 			data: {
