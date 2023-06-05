@@ -30,9 +30,11 @@ switch ($state) {
 function addDish($res) {
     $dishName = $_REQUEST['dish-name'];
     $season = $_REQUEST['season'];
+    $tags = $_REQUEST['tags'];
     $seasonFile = $GLOBALS['fileUrl']->$season;
     $newContent = (object)[
-        "name" => $dishName
+        "name" => $dishName,
+        "tags" => $tags
     ];
     $dishList = json_decode(file_get_contents($seasonFile));
 

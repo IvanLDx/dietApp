@@ -32,7 +32,7 @@
     margin-top: 1rem;
 }
 
-.dish-list li {
+.dish-list .dish-element-list {
     border: 1px solid var(--red);
     margin-bottom: 0.4rem;
     padding: 0.4rem;
@@ -41,7 +41,31 @@
     transition: 0.2s;
 }
 
-.dish-list li:hover {
+.dish-list .dish-tags {
+    display: inline-block;
+    position: relative;
+    height: 19px;
+}
+
+.dish-list .dish-tags ul {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    position: relative;
+    top: -2px;
+}
+
+.dish-list .tag-element {
+    margin-bottom: 0;
+    padding: 0 6px;
+    padding-bottom: 2px;
+}
+
+.dish-list .tag-element .remove-tag {
+    display: none;
+}
+
+.tag-list .dish-list li:hover {
     background-color: var(--yellow);
     border-color: var(--yellow);
     color: var(--white);
@@ -69,6 +93,21 @@
 
 .dish-list .modify {
     margin-right: 1rem;
+}
+
+.tags {
+    display: inline;
+    position: relative;
+    top: -8px;
+}
+
+.tags .tag-element {
+    margin-left: 10px;
+    padding: 0 10px 4px 10px;
+}
+
+.tags .tag-element .remove-tag {
+    display: none;
 }
 
 .season-inputs {

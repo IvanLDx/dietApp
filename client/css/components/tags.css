@@ -1,5 +1,6 @@
 .tags-container {
     position: relative;
+    height: 32px;
 }
 
 .tag-check {
