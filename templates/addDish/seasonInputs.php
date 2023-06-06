@@ -1,14 +1,11 @@
 <div class="season-inputs js-season-inputs">
-    <div class="summer-container">
-        <input type="radio" name="season" value="summer" id="<?=$section?>-summer" class="js-season-radio">
-        <label for="<?=$section?>-summer">Verán</label>
-    </div>
-    <div class="winter-container">
-        <input type="radio" name="season" value="winter" id="<?=$section?>-winter" class="js-season-radio">
-        <label for="<?=$section?>-winter">Inverno</label>
-    </div>
-    <div class="halftime-container">
-        <input type="radio" name="season" value="halftime" id="<?=$section?>-halftime" class="js-season-radio">
-        <label for="<?=$section?>-halftime">Entretempo</label>
-    </div>
+    <?php
+    $seasons = $tld->getSeasonDishData($dishList);
+
+    foreach($seasons as $season) { ?>
+        <div class="<?=$season->id?>-container">
+            <input type="radio" name="season" value="<?=$season->id?>" id="<?=$section?>-<?=$season->id?>" class="js-season-radio">
+            <label for="<?=$section?>-<?=$season->id?>"><?=ucfirst($season->title)?></label>
+        </div>
+    <?php } ?>
 </div>

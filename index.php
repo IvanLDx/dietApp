@@ -6,7 +6,6 @@
 </head>
 <body>
     <div class="js-page page">
-        
         <?php require('./templates/menu.php') ?>
     </div>
 

@@ -16,5 +16,27 @@ class Trilladeira {
             file_put_contents($fileUrl, json_encode($datatoFile, JSON_PRETTY_PRINT));
         }
     }
+
+    public function getSeasonDishData($dishList) {
+        $seasons = [
+            (object) [
+                "file" => $dishList->summer,
+                "id" => "summer",
+                "title" => "verán"
+            ],
+            (object) [
+                "file" => $dishList->winter,
+                "id" => "winter",
+                "title" => "inverno"
+            ],
+            (object) [
+                "file" => $dishList->halftime,
+                "id" => "halftime",
+                "title" => "entretempo"
+            ]
+        ];
+
+        return $seasons;
+    }
 }
 ?>

@@ -1,21 +1,5 @@
 <?php
-$seasons = [
-    (object) [
-        "file" => $dishList->summer,
-        "id" => "summer",
-        "title" => "verán"
-    ],
-    (object) [
-        "file" => $dishList->winter,
-        "id" => "winter",
-        "title" => "inverno"
-    ],
-    (object) [
-        "file" => $dishList->halftime,
-        "id" => "halftime",
-        "title" => "entretempo"
-    ]
-];
+$seasons = $tld->getSeasonDishData($dishList);
 $tagsRaw = $tags;
 
 foreach ($seasons as $season) { ?>
@@ -23,7 +7,11 @@ foreach ($seasons as $season) { ?>
     <ul>
         <?php
         foreach ($season->file as $dish) { ?>
-            <li class="js-dish-element-list dish-element-list" data-id="<?=$dish->id?>" data-name="<?=$dish->name?>" data-season="<?=$season->id?>" data-tags="<?=$dish->tags?>">
+            <li class="js-dish-element-list dish-element-list"
+                data-id="<?=$dish->id?>"
+                data-name="<?=$dish->name?>"
+                data-season="<?=$season->id?>"
+                data-tags="<?=$dish->tags?>">
                 <span><?=$dish->name?></span>
                 
                 <div class="dish-tags">

@@ -21,7 +21,9 @@
                         <?php
                         $tags = json_decode(file_get_contents('./data/tags.json'));
                         $iconUrl = './client/static/svg/close.svg';
-                        require('./templates/tags/list.php');
+
+                        $templateUrl = './templates';
+                        require("$templateUrl/tags/list.php");
                         ?>
                     </div>
 
