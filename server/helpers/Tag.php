@@ -100,7 +100,8 @@ function refreshTags() {
     $tags = json_decode(file_get_contents($fileUrl));
     $iconUrl = '../../client/static/svg/close.svg';
 
-    require('../../templates/tags/list.php');
+    $templateUrl = '../../templates';
+    require("$templateUrl/tags/list.php");
 }
 
 echo json_encode($res);
