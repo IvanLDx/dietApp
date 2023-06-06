@@ -65,12 +65,21 @@
     padding: 0 8px 2px 8px;
 }
 
-.yeh {
-    display: none;
+.modify-modal .tags-container {
+    position: relative;
+    min-height: 38px;
 }
 
-.modify-modal .tag-check:checked + .yeh {
-    display: block;
+.modify-modal .tags-modify-modal {
+    position: absolute;
+}
+
+.modify-modal .listed .tag-list {
+    margin-top: 20px;
+}
+
+.modify-modal .remove-tag {
+    display: none;
 }
 
 input,

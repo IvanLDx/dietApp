@@ -108,6 +108,7 @@ formHelpers.submitTagForm = function (e, removeTagForm) {
 	submitForm(e, removeTagForm, {
 		success: (res) => {
 			$('.js-tag-container').html(res);
+			$('.js-tags-modal-container').html(res);
 			$('.js-tag-name-source').val('');
 			$('.js-tag-color-source').val('');
 			$('.js-tag-name-destination').val('');

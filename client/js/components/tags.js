@@ -55,8 +55,8 @@ function removeTag() {
 	});
 }
 
-function selectTag($tagElement) {
-	let $tagContainer = $('.js-tags');
+function selectTag($tagElement, tagModal) {
+	let $tagContainer = $(tagModal);
 	dishHelpers.createTagElement($tagContainer, $tagElement);
 }
 
@@ -88,7 +88,11 @@ document.addEventListener('click', (e) => {
 
 	let $tagElement = e.target.closest('.js-tag-element-list');
 	if ($tagElement) {
-		selectTag($tagElement);
+		let modifyTagModal = $tagElement.closest('.js-modify-modal')
+			? '.js-dish-tags-modal'
+			: '.js-tags';
+
+		selectTag($tagElement, modifyTagModal);
 	}
 });
 
