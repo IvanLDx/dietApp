@@ -73,6 +73,7 @@ function modifyDish($res) {
     $dishName = $_REQUEST['dish-name'];
     $dishID = $_REQUEST['dish-id'];
     $season = $_REQUEST['season'];
+    $tags = $_REQUEST['tags'];
     $seasonFile = $GLOBALS['fileUrl']->$season;
     $dishList = json_decode(file_get_contents($seasonFile));
     $isInThisSeason = false;
@@ -80,6 +81,7 @@ function modifyDish($res) {
     foreach ($dishList as $dish) {
         if ($dish->id === $dishID) {
             $dish->name = $dishName;
+            $dish->tags = $tags;
             $isInThisSeason = true;
         }
     }

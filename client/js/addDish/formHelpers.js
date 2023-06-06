@@ -22,6 +22,20 @@ function isFieldTagError(formData) {
 	return error;
 }
 
+function serializeTags(container) {
+	let $tags = $(container + ' .js-tag-in-dish');
+
+	let tagsString = '';
+	$tags.forEach(($tag, i) => {
+		if (i !== 0) {
+			tagsString += ', ';
+		}
+		tagsString += $tag.attr('data-id');
+	});
+
+	return tagsString;
+}
+
 function submitForm(e, form, { success }) {
 	let formData = $.ajax.serialize(form);
 	let $form = $(form);
@@ -46,6 +60,7 @@ function submitForm(e, form, { success }) {
 		url: $form.url,
 		data: formData,
 		success: (res) => {
+			console.info(res);
 			if (res.success) {
 				$.ajax({
 					url: $form.url,
@@ -63,17 +78,8 @@ function submitForm(e, form, { success }) {
 
 export const formHelpers = {};
 formHelpers.submitAddForm = function (e, dishForm) {
-	e.preventDefault();
-	let $tags = $('.js-tag-in-dish');
-	let $tagIDs = $('.js-tag-ids');
-	let tagsString = '';
-	$tags.forEach(($tag, i) => {
-		if (i !== 0) {
-			tagsString += ', ';
-		}
-		tagsString += $tag.attr('data-id');
-	});
-	$tagIDs.val(tagsString);
+	let tagsString = serializeTags('.js-add-dish');
+	$('.js-tag-ids').val(tagsString);
 
 	submitForm(e, dishForm, {
 		success: (res) => {
@@ -87,6 +93,9 @@ formHelpers.submitAddForm = function (e, dishForm) {
 };
 
 formHelpers.submitModifyForm = function (e, modifyDishForm) {
+	let tagsString = serializeTags('.js-modify-modal');
+	$('.js-modify-tag-ids').val(tagsString);
+
 	submitForm(e, modifyDishForm, {
 		success: (res) => {
 			$('.js-dish-list').html(res);

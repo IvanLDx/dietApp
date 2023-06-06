@@ -24,6 +24,8 @@
                         require('./templates/tags/list.php');
                         ?>
                     </div>
+
+                    <input type="hidden" class="js-modify-tag-ids tag-ids" name="tags">
     
                     <div class="dish-tags">
                         <ul class="js-dish-tags-modal"></ul>
