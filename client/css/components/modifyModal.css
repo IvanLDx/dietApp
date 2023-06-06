@@ -43,6 +43,45 @@
     background-color: var(--blue);
 }
 
+.modify-modal .season-inputs {
+    margin-bottom: 0;
+}
+
+.modify-modal .span {
+    display: inline;
+}
+
+.modify-modal .span svg {
+    position: relative;
+    top: 10px;
+}
+
+.modify-modal .dish-tags {
+    display: inline-block;
+}
+
+.modify-modal .tag-element {
+    margin-left: 6px;
+    padding: 0 8px 2px 8px;
+}
+
+.modify-modal .tags-container {
+    position: relative;
+    min-height: 38px;
+}
+
+.modify-modal .tags-modify-modal {
+    position: absolute;
+}
+
+.modify-modal .listed .tag-list {
+    margin-top: 20px;
+}
+
+.modify-modal .remove-tag {
+    display: none;
+}
+
 input,
 button {
     margin-top: 0.5rem;

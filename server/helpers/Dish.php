@@ -73,6 +73,7 @@ function modifyDish($res) {
     $dishName = $_REQUEST['dish-name'];
     $dishID = $_REQUEST['dish-id'];
     $season = $_REQUEST['season'];
+    $tags = $_REQUEST['tags'];
     $seasonFile = $GLOBALS['fileUrl']->$season;
     $dishList = json_decode(file_get_contents($seasonFile));
     $isInThisSeason = false;
@@ -80,6 +81,7 @@ function modifyDish($res) {
     foreach ($dishList as $dish) {
         if ($dish->id === $dishID) {
             $dish->name = $dishName;
+            $dish->tags = $tags;
             $isInThisSeason = true;
         }
     }
@@ -139,6 +141,12 @@ function refreshList() {
         "winter" => json_decode(file_get_contents('../../data/winterDishList.json')),
         "halftime" => json_decode(file_get_contents('../../data/halftimeDishList.json'))
     ];
+
+    $tags = json_decode(file_get_contents('../../data/tags.json'));
+
+    $formattedTagListUrl = '../../templates/tags/formattedList.php';
+
+    $iconUrl = '../../client/static/svg/close.svg';
 
     $ico = (object)[
         "modify" => "../../client/static/svg/modify.svg",

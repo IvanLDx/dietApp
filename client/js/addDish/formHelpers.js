@@ -1,5 +1,5 @@
 import { $ } from '../modules/dom.js';
-import { modal, popup } from '../components/modals.js';
+import { modal, popup, tagModal } from '../components/modals.js';
 
 function isFieldError(formData) {
 	let error = false;
@@ -20,6 +20,20 @@ function isFieldTagError(formData) {
 		error = true;
 	}
 	return error;
+}
+
+function serializeTags(container) {
+	let $tags = $(container + ' .js-tag-in-dish');
+
+	let tagsString = '';
+	$tags.forEach(($tag, i) => {
+		if (i !== 0) {
+			tagsString += ', ';
+		}
+		tagsString += $tag.attr('data-id');
+	});
+
+	return tagsString;
 }
 
 function submitForm(e, form, { success }) {
@@ -46,6 +60,7 @@ function submitForm(e, form, { success }) {
 		url: $form.url,
 		data: formData,
 		success: (res) => {
+			console.info(res);
 			if (res.success) {
 				$.ajax({
 					url: $form.url,
@@ -63,16 +78,24 @@ function submitForm(e, form, { success }) {
 
 export const formHelpers = {};
 formHelpers.submitAddForm = function (e, dishForm) {
+	let tagsString = serializeTags('.js-add-dish');
+	$('.js-tag-ids').val(tagsString);
+
 	submitForm(e, dishForm, {
 		success: (res) => {
 			$('.js-dish-list').html(res);
 			$('.js-dish-name').val('');
 			$('.js-season-radio').uncheck();
+			$('.js-tags').html('');
+			tagModal.hide();
 		}
 	});
 };
 
 formHelpers.submitModifyForm = function (e, modifyDishForm) {
+	let tagsString = serializeTags('.js-modify-modal');
+	$('.js-modify-tag-ids').val(tagsString);
+
 	submitForm(e, modifyDishForm, {
 		success: (res) => {
 			$('.js-dish-list').html(res);
@@ -94,6 +117,7 @@ formHelpers.submitTagForm = function (e, removeTagForm) {
 	submitForm(e, removeTagForm, {
 		success: (res) => {
 			$('.js-tag-container').html(res);
+			$('.js-tags-modal-container').html(res);
 			$('.js-tag-name-source').val('');
 			$('.js-tag-color-source').val('');
 			$('.js-tag-name-destination').val('');

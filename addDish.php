@@ -24,6 +24,7 @@
                     "modify" => "$svgFolder/modify.svg",
                     "remove" => "$svgFolder/remove.svg"
                 ];
+                $formattedTagListUrl = './templates/tags/formattedList.php';
                 require('./templates/addDish/dishList.php'); ?>
             </div>
         </div>
