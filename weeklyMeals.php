@@ -20,12 +20,12 @@ $dishList = $tld->getDishListSeasonFiles('./data');
                 require('./templates/addDish/seasonInputs.php');        
                 ?>
         
-                <input type="submit" value="Dálle!">
+                <input type="submit" value="Dálle!" class="js-dalle">
             </form>
         </div>
 
         <div class="generated-table">
-            <ul class="js-table-list"></ul>
+            <ul class="js-table-list dish-list"></ul>
         </div>
 
         <?php require('./templates/menu.php') ?>
@@ -35,12 +35,3 @@ $dishList = $tld->getDishListSeasonFiles('./data');
     <script type="module" src="./client/js/weeklyMeals.js"></script>
 </body>
 </html>
-
-<!-- 
-    - Botón de xerar aleatorio
-    - Cada comida ten un botón de bloquear
-    - Cada comida ten un botón de xerar aleatorio
-    - Posibilidade de engadir un prato nunha comida buscando na DB
-    - Posibilidade de intercambiar dúas comidas entre si
-    - Posibilidade de duplicar un prato en diferentes comidas
- -->

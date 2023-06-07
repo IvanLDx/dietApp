@@ -11,7 +11,7 @@
         ?>
         <div class="<?=$season->id?>-container">
             <input type="<?=$inputType?>"
-                name="season"
+                name="season<?=$isWeeklyMeals ? "-$season->id" : ''?>"
                 value="<?=$season->id?>"
                 id="<?=$section?>-<?=$season->id?>"
                 class="js-season-radio"

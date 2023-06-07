@@ -109,3 +109,74 @@ ul {
 .season-inputs input {
     display: none;
 }
+
+.dish-list {
+    margin-top: 1rem;
+}
+
+.dish-list .dish-element-list {
+    border: 1px solid var(--red);
+    margin-bottom: 0.4rem;
+    padding: 0.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--short-transition);
+}
+
+.dish-list .dish-element-list:hover {
+    background-color: var(--yellow);
+}
+
+.dish-list .dish-tags {
+    display: inline-block;
+    position: relative;
+    height: 19px;
+}
+
+.dish-list .dish-tags ul {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    position: relative;
+    top: -2px;
+}
+
+.dish-list .tag-element {
+    margin-bottom: 0;
+    padding: 0 6px;
+    padding-bottom: 2px;
+}
+
+.dish-list .tag-element .remove-tag {
+    display: none;
+}
+
+.tag-list .dish-list li:hover {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--white);
+}
+
+.dish-list li svg path {
+    stroke: var(--yellow);
+    transition: var(--short-transition);
+} .dish-list li:hover svg path {
+    stroke: var(--white);
+}
+
+.dish-list .ico {
+    position: relative;
+    top: 2px;
+    display: block;
+    width: 18px;
+    float: right;
+    margin-right: 0.5rem;
+}
+
+.dish-list .ico:hover svg path {
+    stroke: var(--black);
+}
+
+.dish-list .modify {
+    margin-right: 1rem;
+}
