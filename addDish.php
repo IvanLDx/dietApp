@@ -2,11 +2,7 @@
 require ('./server/models/Trilladeira.php');
 $tld = new Trilladeira();
 
-$dishList = (object)[
-    "summer" => json_decode(file_get_contents('./data/summerDishList.json')),
-    "winter" => json_decode(file_get_contents('./data/winterDishList.json')),
-    "halftime" => json_decode(file_get_contents('./data/halftimeDishList.json'))
-];
+$dishList = $tld->getDishListSeasonFiles('./data');
 ?>
 
 <!DOCTYPE html>

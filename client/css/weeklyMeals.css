@@ -1,0 +1,8 @@
+.menu-weekly-meals {
+    pointer-events: none;
+    background-color: var(--blue);
+}
+
+.form-wrapper {
+    padding: 1rem;
+}

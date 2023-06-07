@@ -38,5 +38,15 @@ class Trilladeira {
 
         return $seasons;
     }
+
+    public function getDishListSeasonFiles($url) {
+        $dishList = (object)[
+            "summer" => json_decode(file_get_contents("$url/summerDishList.json")),
+            "winter" => json_decode(file_get_contents("$url/winterDishList.json")),
+            "halftime" => json_decode(file_get_contents("$url/halftimeDishList.json"))
+        ];
+
+        return $dishList;
+    }
 }
 ?>
