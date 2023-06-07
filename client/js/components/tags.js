@@ -48,7 +48,7 @@ function removeTag() {
 						}
 					});
 				} else {
-					console.info(res.message);
+					console.log(res.message);
 				}
 			}
 		});

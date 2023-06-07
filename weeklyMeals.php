@@ -20,6 +20,7 @@ $dishList = $tld->getDishListSeasonFiles('./data');
                 require('./templates/addDish/seasonInputs.php');        
                 ?>
         
+                <input type="hidden" name="locked-dishes" class="js-locked-dishes">
                 <input type="submit" value="Dálle!" class="js-dalle">
             </form>
         </div>

@@ -10,7 +10,6 @@ $(generateCalendarForm)[0].onsubmit = (e) => {
 $.click('.js-locker', (e) => {
 	let $dish = e.closest('.js-dish-element-list');
 	$dish.classList.toggle('locked');
-	console.info(e.closest('.js-dish-element-list'));
 });
 
 (() => {

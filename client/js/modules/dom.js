@@ -2,7 +2,7 @@ const SHOW_TRACE = false;
 
 function getElapsedTime(audio) {
 	setInterval(() => {
-		console.info(
+		console.log(
 			~~(audio.currentTime / 60) +
 				':' +
 				Math.floor(audio.currentTime % 60)

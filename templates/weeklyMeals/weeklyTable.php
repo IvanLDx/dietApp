@@ -1,6 +1,5 @@
 <?php
 $maxMealsPerWeek = 9;
-$tagsRaw = $tags;
 $days = [
     'Luns',
     'Martes',
@@ -11,14 +10,16 @@ $days = [
 for($i = 0; $i < $maxMealsPerWeek; $i++) {
     $dish = $allDishes[$i];
     $currentDay = $i / 2;
+    $isLockedDish = isset($dish->locked);
 
     if (floor($currentDay) == ($currentDay)) { ?>
         <p><?=$days[$currentDay]?></p>
     <?php } ?>
-    <li class="js-dish-element-list dish-element-list"
+    <li class="js-dish-element-list dish-element-list <?=$isLockedDish ? 'locked' : ''?>"
         data-id="<?=$dish->id?>"
         data-name="<?=$dish->name?>"
-        data-tags="<?=$dish->tags?>">
+        data-tags="<?=$dish->tags?>"
+        data-position="<?=$i?>">
         <span><?=$dish->name?></span>
 
         <div class="controls">

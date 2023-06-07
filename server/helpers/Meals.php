@@ -26,6 +26,7 @@ switch ($state) {
 function generateCalendar($res) {
     $seasons = explode(",", $_REQUEST['seasons']);
     $fileUrl = $GLOBALS['fileUrl'];
+    $lockedDishes = json_decode($_REQUEST['lockedDishes']);
 
     $allDishes = [];
     foreach($seasons as $season) {
@@ -35,10 +36,32 @@ function generateCalendar($res) {
     for ($i = 0; $i < 10; $i++) {
         shuffle($allDishes);
     }
-    $tags = json_decode(file_get_contents('../../data/tags.json'));
-    require('../../templates/weeklyMeals/weeklyTable.php');
-    $res->allDishes = $allDishes;
-}
 
-// echo json_encode($res);
+    switch (count($lockedDishes)) {
+        case 0:
+            break;
+        default:
+            $res->lockedDishes = $lockedDishes;
+
+            foreach($lockedDishes as $key => $lockedDish) {
+                foreach($allDishes as $dishKey => $dish) {
+                    if ($lockedDish->id === $dish->id) {
+                        array_splice($allDishes, $dishKey, 1);
+                    }
+                }
+            }
+            
+            foreach($lockedDishes as $key => $lockedDish) {
+                $lockedDish->locked = true;
+                array_splice($allDishes, $lockedDish->pos, 1, array($lockedDish));
+            }
+            
+            $res->allDishes = $allDishes;
+
+            
+            break;
+    }
+
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
 ?>

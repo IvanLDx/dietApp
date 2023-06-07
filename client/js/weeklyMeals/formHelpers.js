@@ -23,6 +23,21 @@ formHelpers.submitGenerateTable = function (e, form) {
 	formData.state = $form.state;
 	serializeSeasons(formData);
 
+	let lockedDishes = [];
+	let $lockedDishes = $('.js-dish-element-list');
+	$lockedDishes.forEach(($dish, i) => {
+		if ($dish.classList.contains('locked')) {
+			lockedDishes.push({
+				pos: i,
+				id: $dish.attr('data-id'),
+				name: $dish.attr('data-name'),
+				tags: $dish.attr('data-tags')
+			});
+		}
+	});
+
+	formData.lockedDishes = JSON.stringify(lockedDishes);
+
 	e.preventDefault();
 	$.ajax({
 		url: $form.url,
