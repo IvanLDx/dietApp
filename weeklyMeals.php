@@ -20,6 +20,7 @@ $currentPageName = $tld->getPageName(__FILE__);
         <div class="form-wrapper">
             <form action="Meals-GenerateCalendar"
                 data-action-modify-dish="Meals-ModifyDish"
+                data-action-swap-dishes="Meals-SwapDishes"
                 class="js-generate-calendar">
                 <?php
                 $section = "weeklyMeals";

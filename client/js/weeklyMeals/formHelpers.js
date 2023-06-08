@@ -65,12 +65,39 @@ formHelpers.submitModifyDish = function (e, form) {
 		data: formData,
 		success: (res) => {
 			if (res.success) {
-				console.info(res);
 				let $dishName = dish.querySelector('.js-dish-element-name');
 				$dishName.textContent = res.newDish.name;
 				dish.setAttribute('data-id', res.newDish.id);
 				dish.setAttribute('data-name', res.newDish.name);
 				dish.setAttribute('data-tags', res.newDish.tags);
+			}
+		}
+	});
+};
+
+formHelpers.submitSwapDishes = function (e, form) {
+	let $selectedToSwapDish = $('.selected-to-swap');
+	let $swapWithSelectedDish = e.closest('.js-dish-element-list');
+	let $form = $(form);
+	let data = {
+		selectedToSwap: JSON.stringify({
+			id: $selectedToSwapDish.attr('data-id'),
+			pos: $selectedToSwapDish.attr('data-position')
+		}),
+		swapWithSelected: JSON.stringify({
+			id: $swapWithSelectedDish.getAttribute('data-id'),
+			pos: $swapWithSelectedDish.getAttribute('data-position')
+		})
+	};
+	[data.url, data.state] = $form.attr('data-action-swap-dishes').split('-');
+
+	$.ajax({
+		url: data.url,
+		data: data,
+		success: (res) => {
+			console.info(res);
+			$('.js-table-list').html(res);
+			if (res.success) {
 			}
 		}
 	});

@@ -17,6 +17,9 @@ switch ($state) {
     case 'ModifyDish':
         modifyDish($res);
         break;
+    case 'SwapDishes':
+        swapDishes($res);
+        break;
     default:
         $res->message = "Non se recoñece a declaración $state.";
         echo json_encode($res);
@@ -84,9 +87,29 @@ function modifyDish($res) {
     array_splice($weeklyTable, $dishPos, 1, array($res->newDish));
     $res->success = true;
 
-    array_splice($allDishes, 9);
     $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
 
     echo json_encode($res);
+}
+
+function swapDishes($res) {
+    $tld = new Trilladeira();
+    $selectedToSwap = json_decode($_REQUEST['selectedToSwap']);
+    $swapWithSelected = json_decode($_REQUEST['swapWithSelected']);
+    
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $selectedToSwapBack = $weeklyTable[$selectedToSwap->pos];
+    $swapWithSelectedBack =  $weeklyTable[$swapWithSelected->pos];
+
+    array_splice($weeklyTable, $selectedToSwap->pos, 1, array($swapWithSelectedBack));
+    array_splice($weeklyTable, $swapWithSelected->pos, 1, array($selectedToSwapBack));
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    $svgUrl = '../../client/static/svg';
+    $allDishes = $weeklyTable;
+    
+    require('../../templates/weeklyMeals/weeklyTable.php');
 }
 ?>

@@ -32,3 +32,21 @@ $('.js-remove-popup-form')[0].onsubmit = (e) => {
 $.click('.js-refresh', (e) => {
 	formHelpers.submitModifyDish(e, generateCalendarForm);
 });
+
+$.click('.js-swap', (e) => {
+	let $selectedDish = e.closest('.js-dish-element-list');
+	let state =
+		$('.selected-to-swap').length === 0
+			? 'selected-to-swap'
+			: 'swap-with-selected';
+	switch (state) {
+		case 'selected-to-swap':
+			$selectedDish.classList.add('selected-to-swap');
+			break;
+		case 'swap-with-selected':
+			formHelpers.submitSwapDishes(e, generateCalendarForm);
+			break;
+		default:
+			break;
+	}
+});

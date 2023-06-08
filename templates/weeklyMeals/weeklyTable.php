@@ -24,14 +24,14 @@ for($i = 0; $i < $maxMealsPerWeek; $i++) {
 
         <?php if (!isset($isHomePage)) { ?>
             <div class="controls">
-                <span class="js-locker button">
+                <span class="js-locker button button__locker">
                     <span class="open-ico"><?php require("$svgUrl/locker-open.svg") ?></span>
                     <span class="locked-ico"><?php require("$svgUrl/locker-closed.svg") ?></span>
                 </span>
-                <span class="js-refresh button"><?php require("$svgUrl/refresh.svg") ?></span>
-                <span class="js-swap button"><?php require("$svgUrl/swap.svg") ?></span>
-                <span class="js-copy button"><?php require("$svgUrl/copy.svg") ?></span>
-                <span class="js-magnifier button"><?php require("$svgUrl/magnifier.svg") ?></span>
+                <span class="js-refresh button button__refresh"><?php require("$svgUrl/refresh.svg") ?></span>
+                <span class="js-swap button button__swap"><?php require("$svgUrl/swap.svg") ?></span>
+                <span class="js-copy button button__copy"><?php require("$svgUrl/copy.svg") ?></span>
+                <span class="js-magnifier button button__magnifier"><?php require("$svgUrl/magnifier.svg") ?></span>
             </div>
         <?php } ?>
     </li>
