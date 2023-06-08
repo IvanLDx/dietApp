@@ -14,25 +14,19 @@ switch ($state) {
     case 'GenerateCalendar':
         generateCalendar($res);
         break;
+    case 'ModifyDish':
+        modifyDish($res);
+        break;
     default:
         $res->message = "Non se recoñece a declaración $state.";
+        echo json_encode($res);
         break;
 }
 
 function generateCalendar($res) {
     $tld = new Trilladeira();
-    $seasons = explode(",", $_REQUEST['seasons']);
-    $fileUrl = $GLOBALS['fileUrl'];
     $lockedDishes = json_decode($_REQUEST['lockedDishes']);
-
-    $allDishes = [];
-    foreach($seasons as $season) {
-        $file = json_decode(file_get_contents($fileUrl->$season));
-        $allDishes = array_merge($allDishes, $file);
-    }
-    for ($i = 0; $i < 10; $i++) {
-        shuffle($allDishes);
-    }
+    $allDishes = $tld->mergeSeasonDishes($_REQUEST['seasons']);
 
     switch (count($lockedDishes)) {
         case 0:
@@ -59,5 +53,40 @@ function generateCalendar($res) {
     $svgUrl = '../../client/static/svg';
 
     require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function modifyDish($res) {
+    $tld = new Trilladeira();
+    $dishID = $_REQUEST['dishID'];
+    $dishPos = $_REQUEST['dishPos'];
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $allDishes = $tld->mergeSeasonDishes($_REQUEST['seasons']);
+
+    $i = 0;
+    $dishExistsOnTable = true;
+    while ($i < count($allDishes) && $dishExistsOnTable) {
+        $dishExistsOnTable = false;
+        $dishToAdd = $allDishes[$i];
+
+        foreach($weeklyTable as $keyTableDish => $tableDish) {
+            if ($tableDish->id === $dishToAdd->id) {
+                $dishExistsOnTable = true;
+                break;
+            }
+        }
+        if ($dishExistsOnTable) {
+            $i++;
+        }
+    }
+
+    $res->newDish = $allDishes[$i];
+    array_splice($weeklyTable, $dishPos, 1, array($res->newDish));
+    $res->success = true;
+
+    array_splice($allDishes, 9);
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    echo json_encode($res);
 }
 ?>

@@ -20,7 +20,7 @@ for($i = 0; $i < $maxMealsPerWeek; $i++) {
         data-name="<?=$dish->name?>"
         data-tags="<?=$dish->tags?>"
         data-position="<?=$i?>">
-        <span><?=$dish->name?></span>
+        <span class="js-dish-element-name"><?=$dish->name?></span>
 
         <?php if (!isset($isHomePage)) { ?>
             <div class="controls">

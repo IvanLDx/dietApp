@@ -52,5 +52,19 @@ class Trilladeira {
     function getPageName($rawFileName) {
         return str_replace('.php', '', basename($rawFileName));
     }
+
+    function mergeSeasonDishes($seasonsRaw) {
+        $fileUrl = $GLOBALS['fileUrl'];
+        $seasons = explode(",", $seasonsRaw);
+        $allDishes = [];
+        foreach($seasons as $season) {
+            $file = json_decode(file_get_contents($fileUrl->$season));
+            $allDishes = array_merge($allDishes, $file);
+        }
+        for ($i = 0; $i < 10; $i++) {
+            shuffle($allDishes);
+        }
+        return $allDishes;
+    }
 }
 ?>

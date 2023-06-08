@@ -18,7 +18,9 @@ $currentPageName = $tld->getPageName(__FILE__);
 <body>
     <div class="js-page page" data-page-name="<?=$currentPageName?>">
         <div class="form-wrapper">
-            <form action="Meals-GenerateCalendar" class="js-generate-calendar">
+            <form action="Meals-GenerateCalendar"
+                data-action-modify-dish="Meals-ModifyDish"
+                class="js-generate-calendar">
                 <?php
                 $section = "weeklyMeals";
                 require('./templates/addDish/seasonInputs.php');        

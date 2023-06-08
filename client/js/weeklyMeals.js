@@ -28,3 +28,7 @@ $('.js-remove-popup-form')[0].onsubmit = (e) => {
 	$('.js-dalle')[0].click();
 	popup.hide();
 };
+
+$.click('.js-refresh', (e) => {
+	formHelpers.submitModifyDish(e, generateCalendarForm);
+});
