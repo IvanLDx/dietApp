@@ -4,10 +4,10 @@ import { modal, popup, tagModal } from '../components/modals.js';
 function isFieldError(formData) {
 	let error = false;
 	if (!formData['dish-name']) {
-		console.info('Engade o nome do prato!!');
+		console.log('Engade o nome do prato!!');
 		error = true;
 	} else if (!formData['season']) {
-		console.info('Engade unha tempada!');
+		console.log('Engade unha tempada!');
 		error = true;
 	}
 	return error;
@@ -16,7 +16,7 @@ function isFieldError(formData) {
 function isFieldTagError(formData) {
 	let error = false;
 	if (!formData['tag-name']) {
-		console.info('Engade o nome do prato!!');
+		console.log('Engade o nome do prato!!');
 		error = true;
 	}
 	return error;
@@ -60,7 +60,6 @@ function submitForm(e, form, { success }) {
 		url: $form.url,
 		data: formData,
 		success: (res) => {
-			console.info(res);
 			if (res.success) {
 				$.ajax({
 					url: $form.url,
@@ -70,7 +69,7 @@ function submitForm(e, form, { success }) {
 					}
 				});
 			} else {
-				console.info(res.message);
+				console.log(res.message);
 			}
 		}
 	});

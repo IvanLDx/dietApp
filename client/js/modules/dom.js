@@ -2,7 +2,7 @@ const SHOW_TRACE = false;
 
 function getElapsedTime(audio) {
 	setInterval(() => {
-		console.info(
+		console.log(
 			~~(audio.currentTime / 60) +
 				':' +
 				Math.floor(audio.currentTime % 60)
@@ -39,9 +39,15 @@ export const $ = function $(name) {
 	};
 
 	selves.attr = (attr, val) => {
+		let value = null;
 		selves.forEach((self) => {
-			self.attr(attr, val);
+			if (val) {
+				self.attr(attr, val);
+			} else {
+				value = self.attr(attr);
+			}
 		});
+		return value;
 	};
 
 	selves.val = (val) => {

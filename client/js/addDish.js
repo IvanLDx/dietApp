@@ -5,7 +5,7 @@ import * as tags from './components/tags.js';
 
 const dishForm = '.js-add-dish';
 const modifyDishForm = '.js-modify-form';
-const removeDishForm = '.js-remove-dish-popup';
+const removeDishForm = '.js-remove-popup-form';
 
 function keyEnterEvents(e) {
 	let event = null;
