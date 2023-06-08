@@ -33,7 +33,7 @@
     border: 1px solid var(--red);
     border-color: transparent;
     border-radius: 4px;
-    transition: 0.2s;
+    transition: var(--short-transition);
 }
 
 .tag-check:checked + .tags-modal {
@@ -62,7 +62,7 @@
     border-radius: 50%;
     background-color: var(--red);
     margin-top: 0.5rem;
-    transition: 0.2s;
+    transition: var(--short-transition);
 } .tag-submit:hover {
     background-color: var(--yellow);
 }
@@ -144,7 +144,7 @@
     text-align: center;
     color: var(--white);
     cursor: pointer;
-    transition: 0.2s;
+    transition: var(--short-transition);
     margin-top: 0.4rem;
 } .confirm-remove-tag .confirm-button:hover {
     background-color: var(--white);

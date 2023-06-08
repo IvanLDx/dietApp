@@ -2,9 +2,20 @@
     <?php
     $seasons = $tld->getSeasonDishData($dishList);
 
-    foreach($seasons as $season) { ?>
+    $inputType = $section === 'weeklyMeals' ? 'checkbox' : 'radio';
+
+    foreach($seasons as $season) {
+        $isWeeklyMeals = $section === 'weeklyMeals';
+        $isHalftimeSeason = $season->id === 'halftime';
+        $needsDefaultChecked = $isWeeklyMeals && $isHalftimeSeason;
+        ?>
         <div class="<?=$season->id?>-container">
-            <input type="radio" name="season" value="<?=$season->id?>" id="<?=$section?>-<?=$season->id?>" class="js-season-radio">
+            <input type="<?=$inputType?>"
+                name="season<?=$isWeeklyMeals ? "-$season->id" : ''?>"
+                value="<?=$season->id?>"
+                id="<?=$section?>-<?=$season->id?>"
+                class="js-season-radio"
+                <?=$needsDefaultChecked ? 'checked' : ''?>>
             <label for="<?=$section?>-<?=$season->id?>"><?=ucfirst($season->title)?></label>
         </div>
     <?php } ?>

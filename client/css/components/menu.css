@@ -12,7 +12,7 @@
     flex-grow: 1;
     text-align: center;
     cursor: pointer;
-    transition: 0.2s;
+    transition: var(--short-transition);
 } .menu-bottom__list:hover {
     background-color: var(--blue);
 }

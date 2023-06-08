@@ -13,12 +13,14 @@
     {
         "name": "pepelee",
         "color": "0bc455",
-        "id": "XTRWXV4"
+        "id": "XTRWXV4",
+        "removed": true
     },
     {
         "name": "E algo as\u00ed?",
         "color": "ff0080",
-        "id": "492FJJ9"
+        "id": "492FJJ9",
+        "removed": true
     },
     {
         "name": "12",
@@ -65,46 +67,90 @@
     {
         "name": "sadf",
         "color": "000000",
-        "id": "S7Y4A05J"
+        "id": "S7Y4A05J",
+        "removed": true
     },
     {
         "name": "sdfsd",
         "color": "000000",
-        "id": "7F6QWYX"
+        "id": "7F6QWYX",
+        "removed": true
     },
     {
         "name": "sdfsdwe",
         "color": "000000",
-        "id": "CXHAS6QQ"
+        "id": "CXHAS6QQ",
+        "removed": true
     },
     {
         "name": "jtty",
         "color": "000000",
-        "id": "WSA6NMJI"
+        "id": "WSA6NMJI",
+        "removed": true
     },
     {
         "name": "xcsd",
         "color": "000000",
-        "id": "V8A4JLA4"
+        "id": "V8A4JLA4",
+        "removed": true
     },
     {
         "name": "pois si",
         "color": "ff0080",
-        "id": "MFYFDV9K"
+        "id": "MFYFDV9K",
+        "removed": true
     },
     {
         "name": "asddsqdw",
         "color": "004080",
-        "id": "9ZPDF6H5"
+        "id": "9ZPDF6H5",
+        "removed": true
     },
     {
         "name": "asdsadsass",
         "color": "0000a0",
-        "id": "3R91STCA"
+        "id": "3R91STCA",
+        "removed": true
     },
     {
         "name": "qwsa",
         "color": "000000",
-        "id": "KIQEFCVL"
+        "id": "KIQEFCVL",
+        "removed": true
+    },
+    {
+        "name": "Peixe",
+        "color": "0080c0",
+        "id": "ZZPA3Z7"
+    },
+    {
+        "name": "Vexetariano",
+        "color": "437e16",
+        "id": "80ZHGU3Z"
+    },
+    {
+        "name": "Marisco",
+        "color": "eb6d67",
+        "id": "A59809HV"
+    },
+    {
+        "name": "Legumes",
+        "color": "d2c7ae",
+        "id": "3EL0J3"
+    },
+    {
+        "name": "Carne",
+        "color": "ba361f",
+        "id": "IML4CRXX"
+    },
+    {
+        "name": "Arroz",
+        "color": "e2e2e2",
+        "id": "IJA0YYJ"
+    },
+    {
+        "name": "Ovo",
+        "color": "fad145",
+        "id": "4XA5U31C"
     }
 ]
