@@ -11,9 +11,11 @@ $currentPageName = $tld->getPageName(__FILE__);
 <html lang="en">
 <head>
     <?php include ("./templates/head.php") ?>
+    <link rel="stylesheet" href="./client/css/components/tags.css">
     <link rel="stylesheet" href="./client/css/weeklyMeals.css">
     <link rel="stylesheet" href="./client/css/components/modifyModal.css">
     <link rel="stylesheet" href="./client/css/components/removePopup.css">
+    <link rel="stylesheet" href="./client/css/components/dishListModal.css">
 </head>
 <body>
     <div class="js-page page" data-page-name="<?=$currentPageName?>">
@@ -22,6 +24,7 @@ $currentPageName = $tld->getPageName(__FILE__);
                 data-action-modify-dish="Meals-ModifyDish"
                 data-action-swap-dishes="Meals-SwapDishes"
                 data-action-copy-dish="Meals-CopyDish"
+                data-action-modify-searched-dish="Meals-ModifySearchedDish"
                 class="js-generate-calendar">
                 <?php
                 $section = "weeklyMeals";
@@ -47,6 +50,7 @@ $currentPageName = $tld->getPageName(__FILE__);
 
         <?php require('./templates/menu.php') ?>
 
+        <?php require('./templates/components/dishListModal.php'); ?>
         <?php require('./templates/components/removePopup.php'); ?>
     </div>
 

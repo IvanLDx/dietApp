@@ -32,12 +32,21 @@ foreach ($seasons as $season) { ?>
                     ?>
                 </div>
 
-                <span class="ico remove js-remove-dish">
-                    <?php require($ico->remove); ?>
-                </span>
-                <span class="ico modify js-modify-dish">
-                    <?php require($ico->modify); ?>
-                </span>
+                <?php
+                switch($currentPageName) {
+                    case 'addDish': ?>
+                        <span class="ico remove js-remove-dish">
+                            <?php require($ico->remove); ?>
+                        </span>
+                        <span class="ico modify js-modify-dish">
+                            <?php require($ico->modify); ?>
+                        </span>
+                        <?php break;
+                    case 'weeklyMeals': ?>
+                        <span class="select js-select">Seleccióname!</span>
+                        <?php break;
+                }
+                ?>
             </li>
         <?php } ?>
     </ul>

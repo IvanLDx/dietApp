@@ -70,3 +70,24 @@ $.click('.js-copy', (e) => {
 			break;
 	}
 });
+
+$.click('.js-magnifier', (e) => {
+	let $selectedDish = e.closest('.js-dish-element-list');
+	let $dishList = $('.js-dish-list-modal');
+	$dishList.removeClass('hidden');
+
+	$dishList.attr('data-id', $selectedDish.getAttribute('data-id'));
+	$dishList.attr(
+		'data-position',
+		$selectedDish.getAttribute('data-position')
+	);
+});
+
+$.click('.js-select', (e) => {
+	formHelpers.submitModifySearchedDish(e, generateCalendarForm);
+	$('.js-dish-list-modal').addClass('hidden');
+});
+
+$.click('.js-close-dish-list-modal', (e) => {
+	$('.js-dish-list-modal').addClass('hidden');
+});

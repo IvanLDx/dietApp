@@ -125,3 +125,18 @@ formHelpers.submitCopyDish = function (e, form) {
 
 	submitReplaceForm(params);
 };
+
+formHelpers.submitModifySearchedDish = function (e, form) {
+	let params = {
+		$firstSelectedDish: $('.js-dish-list-modal'),
+		$secondSelectedDish: e.closest('.js-dish-element-list'),
+		data: {}
+	};
+
+	let $form = $(form);
+	[params.data.url, params.data.state] = $form
+		.attr('data-action-modify-searched-dish')
+		.split('-');
+
+	submitReplaceForm(params);
+};

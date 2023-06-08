@@ -23,6 +23,9 @@ switch ($state) {
     case 'CopyDish':
         copyDish($res);
         break;
+    case 'ModifySearchedDish':
+        modifySearchedDish($res);
+        break;
     default:
         $res->message = "Non se recoñece a declaración $state.";
         echo json_encode($res);
@@ -132,6 +135,39 @@ function copyDish($res) {
     $svgUrl = '../../client/static/svg';
     $allDishes = $weeklyTable;
     
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function modifySearchedDish($res) {
+    $tld = new Trilladeira();
+    $selectedToModify = json_decode($_REQUEST['firstSelectedDish']);
+    $copySelected = json_decode($_REQUEST['secondSelectedDish']);
+    
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $selectedToModifyBack =  $weeklyTable[$selectedToModify->pos];
+    $url = '../../data';
+    $dishSeasonFiles = $tld->getDishListSeasonFiles($url);
+    $allSeasonDishes = [];
+    foreach($dishSeasonFiles as $seasonFile) {
+        $allSeasonDishes = array_merge($allSeasonDishes, $seasonFile);
+    }
+    
+    foreach($allSeasonDishes as $seasonDish) {
+        if ($copySelected->id === $seasonDish->id) {
+            array_splice($weeklyTable, $selectedToModify->pos, 1, array($seasonDish));
+            break;
+        }
+    }
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    $svgUrl = '../../client/static/svg';
+    $allDishes = $weeklyTable;
+    $res->weeklyTable = $weeklyTable;
+    $res->selectedToModify = $selectedToModify;
+    $res->copySelected = $copySelected;
+
     require('../../templates/weeklyMeals/weeklyTable.php');
 }
 ?>
