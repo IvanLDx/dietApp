@@ -20,6 +20,9 @@ switch ($state) {
     case 'SwapDishes':
         swapDishes($res);
         break;
+    case 'CopyDish':
+        copyDish($res);
+        break;
     default:
         $res->message = "Non se recoñece a declaración $state.";
         echo json_encode($res);
@@ -94,8 +97,8 @@ function modifyDish($res) {
 
 function swapDishes($res) {
     $tld = new Trilladeira();
-    $selectedToSwap = json_decode($_REQUEST['selectedToSwap']);
-    $swapWithSelected = json_decode($_REQUEST['swapWithSelected']);
+    $selectedToSwap = json_decode($_REQUEST['firstSelectedDish']);
+    $swapWithSelected = json_decode($_REQUEST['secondSelectedDish']);
     
     $weeklyTableUrl = '../../data/weeklyTable.json';
     $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
@@ -104,6 +107,25 @@ function swapDishes($res) {
 
     array_splice($weeklyTable, $selectedToSwap->pos, 1, array($swapWithSelectedBack));
     array_splice($weeklyTable, $swapWithSelected->pos, 1, array($selectedToSwapBack));
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    $svgUrl = '../../client/static/svg';
+    $allDishes = $weeklyTable;
+    
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function copyDish($res) {
+    $tld = new Trilladeira();
+    $selectedToCopy = json_decode($_REQUEST['firstSelectedDish']);
+    $copySelected = json_decode($_REQUEST['secondSelectedDish']);
+    
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $selectedToCopyBack =  $weeklyTable[$selectedToCopy->pos];
+
+    array_splice($weeklyTable, $copySelected->pos, 1, array($selectedToCopyBack));
 
     $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
 

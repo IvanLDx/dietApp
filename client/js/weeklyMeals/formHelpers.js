@@ -16,6 +16,29 @@ function serializeSeasons(formData) {
 	formData.seasons = selectedSeasons;
 }
 
+function submitReplaceForm(params) {
+	let data = {
+		firstSelectedDish: JSON.stringify({
+			id: params.$firstSelectedDish.attr('data-id'),
+			pos: params.$firstSelectedDish.attr('data-position')
+		}),
+		secondSelectedDish: JSON.stringify({
+			id: params.$secondSelectedDish.getAttribute('data-id'),
+			pos: params.$secondSelectedDish.getAttribute('data-position')
+		}),
+		url: params.data.url,
+		state: params.data.state
+	};
+
+	$.ajax({
+		url: data.url,
+		data: data,
+		success: (res) => {
+			$('.js-table-list').html(res);
+		}
+	});
+}
+
 export const formHelpers = {};
 formHelpers.submitGenerateTable = function (e, form) {
 	let formData = $.ajax.serialize(form);
@@ -76,29 +99,29 @@ formHelpers.submitModifyDish = function (e, form) {
 };
 
 formHelpers.submitSwapDishes = function (e, form) {
-	let $selectedToSwapDish = $('.selected-to-swap');
-	let $swapWithSelectedDish = e.closest('.js-dish-element-list');
-	let $form = $(form);
-	let data = {
-		selectedToSwap: JSON.stringify({
-			id: $selectedToSwapDish.attr('data-id'),
-			pos: $selectedToSwapDish.attr('data-position')
-		}),
-		swapWithSelected: JSON.stringify({
-			id: $swapWithSelectedDish.getAttribute('data-id'),
-			pos: $swapWithSelectedDish.getAttribute('data-position')
-		})
+	let params = {
+		$firstSelectedDish: $('.selected-to-swap'),
+		$secondSelectedDish: e.closest('.js-dish-element-list'),
+		data: {}
 	};
-	[data.url, data.state] = $form.attr('data-action-swap-dishes').split('-');
+	let $form = $(form);
+	[params.data.url, params.data.state] = $form
+		.attr('data-action-swap-dishes')
+		.split('-');
 
-	$.ajax({
-		url: data.url,
-		data: data,
-		success: (res) => {
-			console.info(res);
-			$('.js-table-list').html(res);
-			if (res.success) {
-			}
-		}
-	});
+	submitReplaceForm(params);
+};
+
+formHelpers.submitCopyDish = function (e, form) {
+	let params = {
+		$firstSelectedDish: $('.selected-to-copy'),
+		$secondSelectedDish: e.closest('.js-dish-element-list'),
+		data: {}
+	};
+	let $form = $(form);
+	[params.data.url, params.data.state] = $form
+		.attr('data-action-copy-dish')
+		.split('-');
+
+	submitReplaceForm(params);
 };

@@ -42,9 +42,29 @@ $.click('.js-swap', (e) => {
 	switch (state) {
 		case 'selected-to-swap':
 			$selectedDish.classList.add('selected-to-swap');
+			$('.selected-to-copy').removeClass('selected-to-copy');
 			break;
 		case 'swap-with-selected':
 			formHelpers.submitSwapDishes(e, generateCalendarForm);
+			break;
+		default:
+			break;
+	}
+});
+
+$.click('.js-copy', (e) => {
+	let $selectedDish = e.closest('.js-dish-element-list');
+	let state =
+		$('.selected-to-copy').length === 0
+			? 'selected-to-copy'
+			: 'copy-selected';
+	switch (state) {
+		case 'selected-to-copy':
+			$selectedDish.classList.add('selected-to-copy');
+			$('.selected-to-swap').removeClass('selected-to-swap');
+			break;
+		case 'copy-selected':
+			formHelpers.submitCopyDish(e, generateCalendarForm);
 			break;
 		default:
 			break;
