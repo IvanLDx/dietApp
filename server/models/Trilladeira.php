@@ -48,5 +48,9 @@ class Trilladeira {
 
         return $dishList;
     }
+
+    function getPageName($rawFileName) {
+        return str_replace('.php', '', basename($rawFileName));
+    }
 }
 ?>

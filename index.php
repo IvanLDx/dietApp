@@ -6,6 +6,16 @@
 </head>
 <body>
     <div class="js-page page">
+        <div class="generated-table">
+            <ul class="dish-list">
+                <?php
+                $allDishes = json_decode(file_get_contents('./data/weeklyTable.json'));
+                $isHomePage = true;
+                require('./templates/weeklyMeals/weeklyTable.php');
+                ?>
+            </ul>
+        </div>
+
         <?php require('./templates/menu.php') ?>
     </div>
 

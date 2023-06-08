@@ -46,11 +46,19 @@ export const popup = {
 		$('.js-remove-popup').removeClass('activated');
 	},
 	show: function (e) {
-		let dishData = getDishData(e);
-		$('.js-dish-name-popup').txt(dishData.name);
 		$('.js-remove-popup').addClass('activated');
-		$('.js-dish-id-popup').val(dishData.id);
-		$('.js-dish-season-popup').val(dishData.season);
+
+		let currentPageName = $('.js-page').attr('data-page-name');
+		switch (currentPageName) {
+			case 'addDish':
+				let dishData = getDishData(e);
+				$('.js-dish-name-popup').txt(dishData.name);
+				$('.js-dish-id-popup').val(dishData.id);
+				$('.js-dish-season-popup').val(dishData.season);
+				break;
+			default:
+				break;
+		}
 	}
 };
 

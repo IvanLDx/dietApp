@@ -3,6 +3,7 @@ require ('./server/models/Trilladeira.php');
 $tld = new Trilladeira();
 
 $dishList = $tld->getDishListSeasonFiles('./data');
+$currentPageName = $tld->getPageName(__FILE__);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ $dishList = $tld->getDishListSeasonFiles('./data');
     <link rel="stylesheet" href="./client/css/components/removePopup.css">
 </head>
 <body>
-    <div class="js-page page">
+    <div class="js-page page" data-page-name="<?=$currentPageName?>">
         <div class="content">
             <?php require('./templates/addDish/inputs.php'); ?>
 

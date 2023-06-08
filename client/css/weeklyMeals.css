@@ -51,3 +51,10 @@
     fill: var(--brown);
     stroke: var(--brown);
 }
+
+.reset {
+    margin-top: 1rem;
+    background-color: var(--red);
+} .reset:hover {
+    background-color: var(--blue);
+}

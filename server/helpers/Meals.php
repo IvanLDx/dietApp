@@ -1,4 +1,6 @@
 <?php
+require ('../../server/models/Trilladeira.php');
+
 $state = $_REQUEST['state'];
 $res = new stdClass();
 $rootJsonFiles = '../../data';
@@ -12,18 +14,13 @@ switch ($state) {
     case 'GenerateCalendar':
         generateCalendar($res);
         break;
-    case 'Modify':
-        break;
-    case 'Remove':
-        break;
-    case 'RefreshList':
-        return;
     default:
         $res->message = "Non se recoñece a declaración $state.";
         break;
 }
 
 function generateCalendar($res) {
+    $tld = new Trilladeira();
     $seasons = explode(",", $_REQUEST['seasons']);
     $fileUrl = $GLOBALS['fileUrl'];
     $lockedDishes = json_decode($_REQUEST['lockedDishes']);
@@ -41,8 +38,6 @@ function generateCalendar($res) {
         case 0:
             break;
         default:
-            $res->lockedDishes = $lockedDishes;
-
             foreach($lockedDishes as $key => $lockedDish) {
                 foreach($allDishes as $dishKey => $dish) {
                     if ($lockedDish->id === $dish->id) {
@@ -55,12 +50,13 @@ function generateCalendar($res) {
                 $lockedDish->locked = true;
                 array_splice($allDishes, $lockedDish->pos, 1, array($lockedDish));
             }
-            
-            $res->allDishes = $allDishes;
-
-            
             break;
     }
+
+    array_splice($allDishes, 9);
+    $weeklyTableFile = '../../data/weeklyTable.json';
+    $tld->saveJSONFile($allDishes, $weeklyTableFile);
+    $svgUrl = '../../client/static/svg';
 
     require('../../templates/weeklyMeals/weeklyTable.php');
 }
