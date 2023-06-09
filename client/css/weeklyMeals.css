@@ -58,3 +58,25 @@
 } .reset:hover {
     background-color: var(--blue);
 }
+
+.dish-list .dish-element-list.selected-to-copy,
+.dish-list .dish-element-list.selected-to-swap {
+    background-color: var(--yellow);
+}
+
+.dish-list .dish-element-list.selected-to-copy path,
+.dish-list .dish-element-list.selected-to-swap path {
+    fill: var(--white);
+    stroke: var(--white);
+}
+
+.dish-list .dish-element-list.selected-to-copy .button__copy path,
+.dish-list .dish-element-list.selected-to-swap .button__swap path {
+    fill: var(--brown);
+    stroke: var(--brown);
+}
+
+.dish-list .dish-element-list.selected-to-copy .button:not(.button__copy),
+.dish-list .dish-element-list.selected-to-swap .button:not(.button__swap) {
+    pointer-events: none;
+}

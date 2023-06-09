@@ -14,25 +14,28 @@ switch ($state) {
     case 'GenerateCalendar':
         generateCalendar($res);
         break;
+    case 'ModifyDish':
+        modifyDish($res);
+        break;
+    case 'SwapDishes':
+        swapDishes($res);
+        break;
+    case 'CopyDish':
+        copyDish($res);
+        break;
+    case 'ModifySearchedDish':
+        modifySearchedDish($res);
+        break;
     default:
         $res->message = "Non se recoñece a declaración $state.";
+        echo json_encode($res);
         break;
 }
 
 function generateCalendar($res) {
     $tld = new Trilladeira();
-    $seasons = explode(",", $_REQUEST['seasons']);
-    $fileUrl = $GLOBALS['fileUrl'];
     $lockedDishes = json_decode($_REQUEST['lockedDishes']);
-
-    $allDishes = [];
-    foreach($seasons as $season) {
-        $file = json_decode(file_get_contents($fileUrl->$season));
-        $allDishes = array_merge($allDishes, $file);
-    }
-    for ($i = 0; $i < 10; $i++) {
-        shuffle($allDishes);
-    }
+    $allDishes = $tld->mergeSeasonDishes($_REQUEST['seasons']);
 
     switch (count($lockedDishes)) {
         case 0:
@@ -57,6 +60,113 @@ function generateCalendar($res) {
     $weeklyTableFile = '../../data/weeklyTable.json';
     $tld->saveJSONFile($allDishes, $weeklyTableFile);
     $svgUrl = '../../client/static/svg';
+
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function modifyDish($res) {
+    $tld = new Trilladeira();
+    $dishID = $_REQUEST['dishID'];
+    $dishPos = $_REQUEST['dishPos'];
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $allDishes = $tld->mergeSeasonDishes($_REQUEST['seasons']);
+
+    $i = 0;
+    $dishExistsOnTable = true;
+    while ($i < count($allDishes) && $dishExistsOnTable) {
+        $dishExistsOnTable = false;
+        $dishToAdd = $allDishes[$i];
+
+        foreach($weeklyTable as $keyTableDish => $tableDish) {
+            if ($tableDish->id === $dishToAdd->id) {
+                $dishExistsOnTable = true;
+                break;
+            }
+        }
+        if ($dishExistsOnTable) {
+            $i++;
+        }
+    }
+
+    $res->newDish = $allDishes[$i];
+    array_splice($weeklyTable, $dishPos, 1, array($res->newDish));
+    $res->success = true;
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    echo json_encode($res);
+}
+
+function swapDishes($res) {
+    $tld = new Trilladeira();
+    $selectedToSwap = json_decode($_REQUEST['firstSelectedDish']);
+    $swapWithSelected = json_decode($_REQUEST['secondSelectedDish']);
+    
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $selectedToSwapBack = $weeklyTable[$selectedToSwap->pos];
+    $swapWithSelectedBack =  $weeklyTable[$swapWithSelected->pos];
+
+    array_splice($weeklyTable, $selectedToSwap->pos, 1, array($swapWithSelectedBack));
+    array_splice($weeklyTable, $swapWithSelected->pos, 1, array($selectedToSwapBack));
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    $svgUrl = '../../client/static/svg';
+    $allDishes = $weeklyTable;
+    
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function copyDish($res) {
+    $tld = new Trilladeira();
+    $selectedToCopy = json_decode($_REQUEST['firstSelectedDish']);
+    $copySelected = json_decode($_REQUEST['secondSelectedDish']);
+    
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $selectedToCopyBack =  $weeklyTable[$selectedToCopy->pos];
+
+    array_splice($weeklyTable, $copySelected->pos, 1, array($selectedToCopyBack));
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    $svgUrl = '../../client/static/svg';
+    $allDishes = $weeklyTable;
+    
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function modifySearchedDish($res) {
+    $tld = new Trilladeira();
+    $selectedToModify = json_decode($_REQUEST['firstSelectedDish']);
+    $copySelected = json_decode($_REQUEST['secondSelectedDish']);
+    
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    $selectedToModifyBack =  $weeklyTable[$selectedToModify->pos];
+    $url = '../../data';
+    $dishSeasonFiles = $tld->getDishListSeasonFiles($url);
+    $allSeasonDishes = [];
+    foreach($dishSeasonFiles as $seasonFile) {
+        $allSeasonDishes = array_merge($allSeasonDishes, $seasonFile);
+    }
+    
+    foreach($allSeasonDishes as $seasonDish) {
+        if ($copySelected->id === $seasonDish->id) {
+            array_splice($weeklyTable, $selectedToModify->pos, 1, array($seasonDish));
+            break;
+        }
+    }
+
+    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+
+    $svgUrl = '../../client/static/svg';
+    $allDishes = $weeklyTable;
+    $res->weeklyTable = $weeklyTable;
+    $res->selectedToModify = $selectedToModify;
+    $res->copySelected = $copySelected;
 
     require('../../templates/weeklyMeals/weeklyTable.php');
 }
