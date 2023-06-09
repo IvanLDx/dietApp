@@ -18,35 +18,11 @@ class Trilladeira {
     }
 
     public function getSeasonDishData($dishList) {
-        $seasons = [
-            (object) [
-                "file" => $dishList->summer,
-                "id" => "summer",
-                "title" => "verán"
-            ],
-            (object) [
-                "file" => $dishList->winter,
-                "id" => "winter",
-                "title" => "inverno"
-            ],
-            (object) [
-                "file" => $dishList->halftime,
-                "id" => "halftime",
-                "title" => "entretempo"
-            ]
-        ];
-
-        return $seasons;
+        return getSeasonDishData($dishList);
     }
 
     public function getDishListSeasonFiles($url) {
-        $dishList = (object)[
-            "summer" => json_decode(file_get_contents("$url/summerDishList.json")),
-            "winter" => json_decode(file_get_contents("$url/winterDishList.json")),
-            "halftime" => json_decode(file_get_contents("$url/halftimeDishList.json"))
-        ];
-
-        return $dishList;
+        return getDishListSeasonFiles($url);
     }
 
     function getPageName($rawFileName) {
@@ -66,5 +42,54 @@ class Trilladeira {
         }
         return $allDishes;
     }
+
+    public function createBackups() {
+        $JSONFileUrl = "../../data";
+        $dishList = getDishListSeasonFiles($JSONFileUrl);
+        $seasonDishData = getSeasonDishData($dishList);
+
+        foreach($seasonDishData as $season) {
+            $dishName = $season->id . "DishList";
+            $backupUrl = "$JSONFileUrl/backups/$dishName/".$_REQUEST['date'].".json";
+            $fileExists = file_exists($backupUrl);
+            
+            if (!$fileExists) {
+                copy("$JSONFileUrl/".$dishName.".json", $backupUrl);
+            }
+        }
+
+    }
+}
+
+function getSeasonDishData($dishList) {
+    $seasons = [
+        (object) [
+            "file" => $dishList->summer,
+            "id" => "summer",
+            "title" => "verán"
+        ],
+        (object) [
+            "file" => $dishList->winter,
+            "id" => "winter",
+            "title" => "inverno"
+        ],
+        (object) [
+            "file" => $dishList->halftime,
+            "id" => "halftime",
+            "title" => "entretempo"
+        ]
+    ];
+
+    return $seasons;
+}
+
+function getDishListSeasonFiles($url) {
+    $dishList = (object)[
+        "summer" => json_decode(file_get_contents("$url/summerDishList.json")),
+        "winter" => json_decode(file_get_contents("$url/winterDishList.json")),
+        "halftime" => json_decode(file_get_contents("$url/halftimeDishList.json"))
+    ];
+
+    return $dishList;
 }
 ?>

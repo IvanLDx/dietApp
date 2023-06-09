@@ -1,5 +1,5 @@
 <?php
-
+require ('../../server/models/Trilladeira.php');
 $state = $_REQUEST['state'];
 $res = new stdClass();
 $rootJsonFiles = '../../data';
@@ -28,6 +28,7 @@ switch ($state) {
 }
 
 function addDish($res) {
+    $tld = new Trilladeira();
     $dishName = $_REQUEST['dish-name'];
     $season = $_REQUEST['season'];
     $tags = $_REQUEST['tags'];
@@ -37,6 +38,8 @@ function addDish($res) {
         "tags" => $tags
     ];
     $dishList = json_decode(file_get_contents($seasonFile));
+
+    $tld->createBackups();
 
     foreach ($dishList as $dish) {
         if ($dish->name === $dishName) {
@@ -70,6 +73,7 @@ function addDish($res) {
 }
 
 function modifyDish($res) {
+    $tld = new Trilladeira();
     $dishName = $_REQUEST['dish-name'];
     $dishID = $_REQUEST['dish-id'];
     $season = $_REQUEST['season'];
@@ -77,6 +81,8 @@ function modifyDish($res) {
     $seasonFile = $GLOBALS['fileUrl']->$season;
     $dishList = json_decode(file_get_contents($seasonFile));
     $isInThisSeason = false;
+
+    $tld->createBackups();
 
     foreach ($dishList as $dish) {
         if ($dish->id === $dishID) {
@@ -98,6 +104,9 @@ function modifyDish($res) {
 }
 
 function removeDishGlobalSeasons($res) {
+    $tld = new Trilladeira();
+    $tld->createBackups();
+
     $dishID = $_REQUEST['dish-id'];
     $dishFoundInFile = false;
     foreach ($GLOBALS['fileUrl'] as $i => $fileUrl) {
@@ -119,10 +128,13 @@ function removeDishGlobalSeasons($res) {
 }
 
 function removeDish($res) {
+    $tld = new Trilladeira();
     $dishID = $_REQUEST['dish-id'];
     $season = $_REQUEST['season'];
     $seasonFile = $GLOBALS['fileUrl']->$season;
     $dishList = json_decode(file_get_contents($seasonFile));
+
+    $tld->createBackups();
 
     foreach ($dishList as $key => $dish) {
         if ($dish->id === $dishID) {
@@ -136,21 +148,16 @@ function removeDish($res) {
 }
 
 function refreshList() {
-    require ('../../server/models/Trilladeira.php');
     $tld = new Trilladeira();
-
     $dishList = $tld->getDishListSeasonFiles('../../data');
-
     $tags = json_decode(file_get_contents('../../data/tags.json'));
-
     $formattedTagListUrl = '../../templates/tags/formattedList.php';
-
     $iconUrl = '../../client/static/svg/close.svg';
-
     $ico = (object)[
         "modify" => "../../client/static/svg/modify.svg",
         "remove" => "../../client/static/svg/remove.svg"
     ];
+    $currentPageName = 'addDish';
     require('../../templates/addDish/dishList.php');
 }
 

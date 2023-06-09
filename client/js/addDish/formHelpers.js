@@ -40,6 +40,7 @@ function submitForm(e, form, { success }) {
 	let formData = $.ajax.serialize(form);
 	let $form = $(form);
 	formData.state = $form.state;
+	formData.date = new Date().toISOString().slice(0, 10);
 
 	e.preventDefault();
 	if (!form.match('remove')) {
