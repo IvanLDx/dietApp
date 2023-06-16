@@ -12,35 +12,39 @@ foreach ($seasons as $season) { ?>
                 data-name="<?=$dish->name?>"
                 data-season="<?=$season->id?>"
                 data-tags="<?=$dish->tags?>">
-                <span><?=$dish->name?></span>
-                
-                <div class="dish-tags">
-                    <?php
-                        if (isset($dish->tags)) {
-                            $tagIDs = explode(", ", $dish->tags);
-                            
-                            $tags = [];
-                            foreach ($tagIDs as $tagID) {
-                                foreach ($tagsRaw as $tag) {
-                                    if ($tagID === $tag->id) {
-                                        $tags[] = $tag;
+                <div class="grid-content">
+                    <span><?=$dish->name?></span>
+                    
+                    <div class="dish-tags">
+                        <?php
+                            if (isset($dish->tags)) {
+                                $tagIDs = explode(", ", $dish->tags);
+                                
+                                $tags = [];
+                                foreach ($tagIDs as $tagID) {
+                                    foreach ($tagsRaw as $tag) {
+                                        if ($tagID === $tag->id) {
+                                            $tags[] = $tag;
+                                        }
                                     }
                                 }
+                                include $formattedTagListUrl;
                             }
-                            require($formattedTagListUrl);
-                        }
-                    ?>
+                        ?>
+                    </div>
                 </div>
 
                 <?php
                 switch($currentPageName) {
                     case 'addDish': ?>
-                        <span class="ico remove js-remove-dish">
-                            <?php require($ico->remove); ?>
-                        </span>
-                        <span class="ico modify js-modify-dish">
-                            <?php require($ico->modify); ?>
-                        </span>
+                        <div class="grid-controls">
+                            <span class="ico modify js-modify-dish">
+                                <?php echo file_get_contents($ico->modify) ?>
+                            </span>
+                            <span class="ico remove js-remove-dish">
+                                <?php echo file_get_contents($ico->remove) ?>
+                            </span>
+                        </div>
                         <?php break;
                     case 'weeklyMeals': ?>
                         <span class="select js-select">Seleccióname!</span>

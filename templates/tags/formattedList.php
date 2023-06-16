@@ -29,7 +29,11 @@
         <li class="js-tag-element-list tag-element <?=$total < 50 ? 'black-color' : 'white-color'?>" data-id="<?=$tag->id?>" data-name="<?=$tag->name?>" data-color="<?=$tag->color?>" style="background-color: #<?=$tag->color?>">
             <?=$tag->name?>
             <span class="remove-tag js-remove-tag">
-                <?php require($iconUrl) ?>
+                <?php
+                    if (isset($iconUrl)) {
+                        echo file_get_contents($iconUrl);
+                    }
+                ?>
             </span>
         </li>
         <?php }

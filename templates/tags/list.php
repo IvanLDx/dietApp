@@ -1,5 +1,5 @@
 <div class="tag-list">
-    <?php require("$templateUrl/tags/formattedList.php") ?>
+    <?php include "$templateUrl/tags/formattedList.php" ?>
 </div>
 
 <div class="confirm-remove-tag">

@@ -25,13 +25,13 @@ for($i = 0; $i < $maxMealsPerWeek; $i++) {
         <?php if (!isset($isHomePage)) { ?>
             <div class="controls">
                 <span class="js-locker button button__locker">
-                    <span class="open-ico"><?php require("$svgUrl/locker-open.svg") ?></span>
-                    <span class="locked-ico"><?php require("$svgUrl/locker-closed.svg") ?></span>
+                    <span class="open-ico"><?= file_get_contents($svgUrl . "/locker-open.svg") ?></span>
+                    <span class="locked-ico"><?= file_get_contents($svgUrl . "/locker-closed.svg") ?></span>
                 </span>
-                <span class="js-refresh button button__refresh"><?php require("$svgUrl/refresh.svg") ?></span>
-                <span class="js-swap button button__swap"><?php require("$svgUrl/swap.svg") ?></span>
-                <span class="js-copy button button__copy"><?php require("$svgUrl/copy.svg") ?></span>
-                <span class="js-magnifier button button__magnifier"><?php require("$svgUrl/magnifier.svg") ?></span>
+                <span class="js-refresh button button__refresh"><?= file_get_contents($svgUrl . "/refresh.svg") ?></span>
+                <span class="js-swap button button__swap"><?= file_get_contents($svgUrl . "/swap.svg") ?></span>
+                <span class="js-copy button button__copy"><?= file_get_contents($svgUrl . "/copy.svg") ?></span>
+                <span class="js-magnifier button button__magnifier"><?= file_get_contents($svgUrl . "/magnifier.svg") ?></span>
             </div>
         <?php } ?>
     </li>

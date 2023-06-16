@@ -5,13 +5,13 @@
         
         <?php
         $section = "main";
-        require('./templates/addDish/seasonInputs.php');
+        include "$root/templates/addDish/seasonInputs.php";
 
-        require('./templates/addDish/tags.php');
+        include "$root/templates/addDish/tags.php";
         ?>
 
         <input class="submit js-submit-dish" type="submit" value="Dálle!">
     </form>
 
-    <?php require('./templates/addDish/tagFormHidden.php') ?>
+    <?php include "$root/templates/addDish/tagFormHidden.php" ?>
 </div>
