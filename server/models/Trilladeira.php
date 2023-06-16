@@ -17,6 +17,10 @@ class Trilladeira {
         }
     }
 
+    public function getJSONFile($jsonFileName) {
+        return json_decode(file_get_contents("./data/$jsonFileName.json"));
+    }
+
     public function getSeasonDishData($dishList) {
         return getSeasonDishData($dishList);
     }

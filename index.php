@@ -1,24 +1,31 @@
+<?php
+$root = dirname(__FILE__);
+include "$root/server/models/Trilladeira.php";
+$tld = new Trilladeira();
+$clientVersion = $tld->getJSONFile("clientVersion");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include ("./templates/head.php") ?>
-    <link rel="stylesheet" href="./client/css/home.css">
+    <?php include "$root/templates/head.php" ?>
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/home.css">
 </head>
 <body>
     <div class="js-page page">
         <div class="generated-table">
             <ul class="dish-list">
                 <?php
-                $allDishes = json_decode(file_get_contents('./data/weeklyTable.json'));
+                $allDishes = json_decode(file_get_contents($root . "/data/weeklyTable.json"));
                 $isHomePage = true;
-                require('./templates/weeklyMeals/weeklyTable.php');
+                include "$root/templates/weeklyMeals/weeklyTable.php";
                 ?>
             </ul>
         </div>
 
-        <?php require('./templates/menu.php') ?>
+        <?php include "$root/templates/menu.php" ?>
     </div>
 
-    <script type="module" src="./client/js/main.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/main.js"></script>
 </body>
 </html>

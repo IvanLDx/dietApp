@@ -1,8 +1,9 @@
 <?php
-require ('./server/models/Trilladeira.php');
+$root = dirname(__FILE__);
+include "$root/server/models/Trilladeira.php";
 $tld = new Trilladeira();
-$dishList = $tld->getDishListSeasonFiles('./data');
-
+$dishList = $tld->getDishListSeasonFiles("$root/data");
+$clientVersion = $tld->getJSONFile("clientVersion");
 $currentPageName = $tld->getPageName(__FILE__);
 ?>
 
@@ -10,12 +11,12 @@ $currentPageName = $tld->getPageName(__FILE__);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include ("./templates/head.php") ?>
-    <link rel="stylesheet" href="./client/css/components/tags.css">
-    <link rel="stylesheet" href="./client/css/weeklyMeals.css">
-    <link rel="stylesheet" href="./client/css/components/modifyModal.css">
-    <link rel="stylesheet" href="./client/css/components/removePopup.css">
-    <link rel="stylesheet" href="./client/css/components/dishListModal.css">
+    <?php include "$root/templates/head.php" ?>
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/tags.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/weeklyMeals.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/modifyModal.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/removePopup.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/dishListModal.css">
 </head>
 <body>
     <div class="js-page page" data-page-name="<?=$currentPageName?>">
@@ -28,7 +29,7 @@ $currentPageName = $tld->getPageName(__FILE__);
                 class="js-generate-calendar">
                 <?php
                 $section = "weeklyMeals";
-                require('./templates/addDish/seasonInputs.php');        
+                include "$root/templates/addDish/seasonInputs.php";        
                 ?>
         
                 <input type="hidden" name="locked-dishes" class="js-locked-dishes">
@@ -41,20 +42,19 @@ $currentPageName = $tld->getPageName(__FILE__);
         <div class="generated-table">
             <ul class="js-table-list dish-list">
                 <?php
-                    $allDishes = json_decode(file_get_contents('./data/weeklyTable.json'));
-                    $svgUrl = './client/static/svg';
-                    require('./templates/weeklyMeals/weeklyTable.php');
+                    $allDishes = json_decode(file_get_contents($root . "/data/weeklyTable.json"));
+                    $svgUrl = "$root/client/static/svg";
+                    include "$root/templates/weeklyMeals/weeklyTable.php";
                 ?>
             </ul>
         </div>
 
-        <?php require('./templates/menu.php') ?>
-
-        <?php require('./templates/components/dishListModal.php'); ?>
-        <?php require('./templates/components/removePopup.php'); ?>
+        <?php include "$root/templates/menu.php" ?>
+        <?php include "$root/templates/components/dishListModal.php"; ?>
+        <?php include "$root/templates/components/removePopup.php"; ?>
     </div>
 
-    <script type="module" src="./client/js/main.js"></script>
-    <script type="module" src="./client/js/weeklyMeals.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/main.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/weeklyMeals.js"></script>
 </body>
 </html>

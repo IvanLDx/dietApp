@@ -1,6 +1,6 @@
 <div class="tags-container">
     <label for="tag-check" class="span js-open-tag-modal">
-        <?php require('./client/static/svg/tag.svg') ?>
+        <?php echo file_get_contents("$root/client/static/svg/tag.svg") ?>
     </label>
     <input id="tag-check" class="tag-check js-tag-check" type="checkbox">
     
@@ -9,16 +9,16 @@
             <input type="text" class="new-tag-name js-tag-name-source">
             <input type="color" class="tag-color js-tag-color-source">
             <div class="tag-submit js-tag-submit">
-                <?php require('./client/static/svg/tag-right.svg') ?>
+                <?php echo file_get_contents("$root/client/static/svg/tag-right.svg") ?>
             </div>
         </div>
         <div class="tag-container js-tag-container listed" data-action="Tag-Remove">
             
             <?php
-            $tags = json_decode(file_get_contents('./data/tags.json'));
-            $iconUrl = './client/static/svg/close.svg';
-            $templateUrl = './templates';
-            require("$templateUrl/tags/list.php");
+            $tags = json_decode(file_get_contents($root . "/data/tags.json"));
+            $iconUrl = "$root/client/static/svg/close.svg";
+            $templateUrl = "$root/templates";
+            include "$templateUrl/tags/list.php";
             ?>
 
         </div>
