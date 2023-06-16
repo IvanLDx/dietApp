@@ -1,103 +1,37 @@
 [
     {
-        "name": "Pasta",
-        "color": "f4cc6c",
-        "id": "BF10U4DM"
-    },
-    {
-        "name": "asdzxc",
-        "color": "000000",
-        "id": "2G6KG0QX",
-        "removed": true
-    },
-    {
-        "name": "pepelee",
-        "color": "0bc455",
-        "id": "XTRWXV4",
-        "removed": true
-    },
-    {
-        "name": "E algo as\u00ed?",
-        "color": "ff0080",
-        "id": "492FJJ9",
-        "removed": true
-    },
-    {
         "name": "12",
         "color": "000000",
         "id": "MLHHGIGA",
         "removed": true
     },
     {
-        "name": "xzca",
+        "name": "a",
         "color": "000000",
-        "id": "6DRUUA2V",
+        "id": "QKBPOKV6",
         "removed": true
     },
     {
-        "name": "qwacxvwq",
-        "color": "000040",
-        "id": "I5ZWV9A",
+        "name": "aa",
+        "color": "000000",
+        "id": "13QFQJC",
         "removed": true
     },
     {
-        "name": "qwacxvwqq",
-        "color": "000040",
-        "id": "CMDWKN59",
+        "name": "aas",
+        "color": "000000",
+        "id": "PF8H71T3",
         "removed": true
     },
     {
-        "name": "asdxzc",
-        "color": "8080ff",
-        "id": "5D7OT61D",
-        "removed": true
+        "name": "Arroz",
+        "color": "e2e2e2",
+        "id": "IJA0YYJ"
     },
     {
         "name": "asd qw",
         "color": "808040",
         "id": "OG249D5B",
-        "removed": true
-    },
-    {
-        "name": "wesad",
-        "color": "0000a0",
-        "id": "CZYGU68F",
-        "removed": true
-    },
-    {
-        "name": "sadf",
-        "color": "000000",
-        "id": "S7Y4A05J",
-        "removed": true
-    },
-    {
-        "name": "sdfsd",
-        "color": "000000",
-        "id": "7F6QWYX",
-        "removed": true
-    },
-    {
-        "name": "sdfsdwe",
-        "color": "000000",
-        "id": "CXHAS6QQ",
-        "removed": true
-    },
-    {
-        "name": "jtty",
-        "color": "000000",
-        "id": "WSA6NMJI",
-        "removed": true
-    },
-    {
-        "name": "xcsd",
-        "color": "000000",
-        "id": "V8A4JLA4",
-        "removed": true
-    },
-    {
-        "name": "pois si",
-        "color": "ff0080",
-        "id": "MFYFDV9K",
         "removed": true
     },
     {
@@ -113,30 +47,27 @@
         "removed": true
     },
     {
-        "name": "qwsa",
-        "color": "000000",
-        "id": "KIQEFCVL",
+        "name": "asdxzc",
+        "color": "8080ff",
+        "id": "5D7OT61D",
         "removed": true
     },
     {
-        "name": "Peixe",
-        "color": "0080c0",
-        "id": "ZZPA3Z7"
+        "name": "asdzxc",
+        "color": "000000",
+        "id": "2G6KG0QX",
+        "removed": true
     },
     {
-        "name": "Vexetariano",
-        "color": "437e16",
-        "id": "80ZHGU3Z"
+        "name": "Asi\u00e1tico",
+        "color": "0ea4af",
+        "id": "HQ8SF2"
     },
     {
-        "name": "Marisco",
-        "color": "eb6d67",
-        "id": "A59809HV"
-    },
-    {
-        "name": "Legumes",
-        "color": "d2c7ae",
-        "id": "3EL0J3"
+        "name": "b",
+        "color": "000000",
+        "id": "IO2P20B",
+        "removed": true
     },
     {
         "name": "Carne",
@@ -144,9 +75,38 @@
         "id": "IML4CRXX"
     },
     {
-        "name": "Arroz",
-        "color": "e2e2e2",
-        "id": "IJA0YYJ"
+        "name": "E algo as\u00ed?",
+        "color": "ff0080",
+        "id": "492FJJ9",
+        "removed": true
+    },
+    {
+        "name": "ew",
+        "color": "000000",
+        "id": "9C9T06OG",
+        "removed": true
+    },
+    {
+        "name": "fgdfg",
+        "color": "000000",
+        "id": "2AKA4SOI",
+        "removed": true
+    },
+    {
+        "name": "jtty",
+        "color": "000000",
+        "id": "WSA6NMJI",
+        "removed": true
+    },
+    {
+        "name": "Legumes",
+        "color": "d2c7ae",
+        "id": "3EL0J3"
+    },
+    {
+        "name": "Marisco",
+        "color": "eb6d67",
+        "id": "A59809HV"
     },
     {
         "name": "Ovo",
@@ -159,9 +119,44 @@
         "id": "W5V0LH97"
     },
     {
-        "name": "Asi\u00e1tico",
-        "color": "0ea4af",
-        "id": "HQ8SF2"
+        "name": "Pasta",
+        "color": "f4cc6c",
+        "id": "BF10U4DM"
+    },
+    {
+        "name": "Peixe",
+        "color": "0080c0",
+        "id": "ZZPA3Z7"
+    },
+    {
+        "name": "pepelee",
+        "color": "0bc455",
+        "id": "XTRWXV4",
+        "removed": true
+    },
+    {
+        "name": "pois si",
+        "color": "ff0080",
+        "id": "MFYFDV9K",
+        "removed": true
+    },
+    {
+        "name": "qw",
+        "color": "000000",
+        "id": "L79ISJQS",
+        "removed": true
+    },
+    {
+        "name": "qwacxvwq",
+        "color": "000040",
+        "id": "I5ZWV9A",
+        "removed": true
+    },
+    {
+        "name": "qwacxvwqq",
+        "color": "000040",
+        "id": "CMDWKN59",
+        "removed": true
     },
     {
         "name": "qwe",
@@ -170,9 +165,74 @@
         "removed": true
     },
     {
+        "name": "qwsa",
+        "color": "000000",
+        "id": "KIQEFCVL",
+        "removed": true
+    },
+    {
+        "name": "sa",
+        "color": "000000",
+        "id": "H59JRUKC",
+        "removed": true
+    },
+    {
+        "name": "sadf",
+        "color": "000000",
+        "id": "S7Y4A05J",
+        "removed": true
+    },
+    {
+        "name": "sas",
+        "color": "000000",
+        "id": "QWPVDG1O",
+        "removed": true
+    },
+    {
+        "name": "sdfsd",
+        "color": "000000",
+        "id": "7F6QWYX",
+        "removed": true
+    },
+    {
+        "name": "sdfsdwe",
+        "color": "000000",
+        "id": "CXHAS6QQ",
+        "removed": true
+    },
+    {
+        "name": "Vexetariano",
+        "color": "437e16",
+        "id": "80ZHGU3Z"
+    },
+    {
+        "name": "w",
+        "color": "000000",
+        "id": "FDGI45VZ",
+        "removed": true
+    },
+    {
+        "name": "wesad",
+        "color": "0000a0",
+        "id": "CZYGU68F",
+        "removed": true
+    },
+    {
         "name": "wevsd",
         "color": "000000",
         "id": "IPYIWGMO",
+        "removed": true
+    },
+    {
+        "name": "xcsd",
+        "color": "000000",
+        "id": "V8A4JLA4",
+        "removed": true
+    },
+    {
+        "name": "xzca",
+        "color": "000000",
+        "id": "6DRUUA2V",
         "removed": true
     }
 ]

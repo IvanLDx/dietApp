@@ -1,4 +1,4 @@
-<div class="tags-container">
+<div class="tags-container js-tags-container">
     <label for="tag-check" class="span js-open-tag-modal">
         <?php echo file_get_contents("$root/client/static/svg/tag.svg") ?>
     </label>

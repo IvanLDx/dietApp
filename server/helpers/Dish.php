@@ -65,6 +65,8 @@ function addDish($res) {
 
         $newContent->id = $id;
         $dishList[] = $newContent;
+        $dishList = $tld->sortByName($dishList);
+
         saveJSONFile($dishList, $seasonFile);
 
         $res->success = true;
@@ -93,6 +95,7 @@ function modifyDish($res) {
     }
 
     if ($isInThisSeason) {
+        $dishList = $tld->sortByName($dishList);
         saveJSONFile($dishList, $seasonFile);
     } else {
         removeDishGlobalSeasons($res);

@@ -71,6 +71,9 @@ function addTag($res) {
             $newContent->id = $id;
             $tagList[] = $newContent;
         }
+
+        $tagList = $tld->sortByName($tagList);
+
         $tld->saveJSONFile($tagList, $fileUrl);
 
         $res->success = true;

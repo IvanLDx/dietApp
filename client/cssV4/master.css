@@ -140,6 +140,17 @@ ul {
     background-color: var(--yellow);
 }
 
+@media (max-width: 678px) {
+    .dish-list .dish-element-list:active {
+        background-color: var(--white);
+    }
+    
+    .dish-list .dish-element-list:active .grid-controls path {
+        stroke: var(--yellow);
+    }
+}
+
+
 .dish-list .dish-tags {
     display: inline-block;
     position: relative;
