@@ -20,7 +20,7 @@
 .input__container {
     position: sticky;
     background-color: var(--white);
-    top: -54px;
+    top: -38px;
     z-index: 1;
 }
 

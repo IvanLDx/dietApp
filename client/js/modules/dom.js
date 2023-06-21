@@ -264,7 +264,7 @@ $.ajax = (obj) => {
 		}
 	};
 
-	var completeURL = `server/helpers/${obj.url}.php`;
+	var completeURL = `server/helpers/${obj.url}`;
 
 	var params = (o) => {
 		let urlParams = '';

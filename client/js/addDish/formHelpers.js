@@ -59,11 +59,13 @@ function submitForm(e, form, { success }) {
 
 	$.ajax({
 		url: $form.url,
+		method: 'GET',
 		data: formData,
 		success: (res) => {
 			if (res.success) {
 				$.ajax({
 					url: $form.url,
+					method: 'GET',
 					data: { state: 'RefreshList' },
 					success: (res) => {
 						success(res);

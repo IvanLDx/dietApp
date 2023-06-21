@@ -87,3 +87,7 @@ $.click('.js-close-popup', () => {
 $.click('.js-season-inputs, .js-dish-name, .js-dish-element-list', (e) => {
 	tagModal.hide();
 });
+
+$('.js-tags-container').on('mouseleave', () => {
+	tagModal.hide();
+});

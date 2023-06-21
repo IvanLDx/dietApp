@@ -80,3 +80,17 @@
 .dish-list .dish-element-list.selected-to-swap .button:not(.button__swap) {
     pointer-events: none;
 }
+
+@media (max-width: 476px) {
+    .dish-list .dish-element-list .controls,
+    .dish-list-modal .dish-element-list .select {
+        display: block;
+        float: none;
+        text-align: center;
+    }
+
+    .dish-list-modal .dish-element-list .select {
+        margin-top: 10px;
+        padding: 0;
+    }
+}

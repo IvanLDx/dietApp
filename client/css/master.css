@@ -121,7 +121,20 @@ ul {
     border-radius: 4px;
     cursor: pointer;
     transition: var(--short-transition);
+    display: grid;
+    grid-template-columns: auto 56px;
 }
+
+[data-page-name="weeklyMeals"] .dish-list .dish-element-list {
+    display: block
+}
+
+.dish-list .dish-element-list .grid-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
 
 .dish-list .dish-element-list:hover {
     background-color: var(--yellow);
@@ -175,8 +188,4 @@ ul {
 
 .dish-list .ico:hover svg path {
     stroke: var(--black);
-}
-
-.dish-list .modify {
-    margin-right: 1rem;
 }

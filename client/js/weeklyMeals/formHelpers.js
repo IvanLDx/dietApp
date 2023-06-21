@@ -32,6 +32,7 @@ function submitReplaceForm(params) {
 
 	$.ajax({
 		url: data.url,
+		method: 'GET',
 		data: data,
 		success: (res) => {
 			$('.js-table-list').html(res);
@@ -64,6 +65,7 @@ formHelpers.submitGenerateTable = function (e, form) {
 	e.preventDefault();
 	$.ajax({
 		url: $form.url,
+		method: 'GET',
 		data: formData,
 		success: (res) => {
 			$('.js-table-list').html(res);
@@ -85,6 +87,7 @@ formHelpers.submitModifyDish = function (e, form) {
 
 	$.ajax({
 		url: formData.url,
+		method: 'GET',
 		data: formData,
 		success: (res) => {
 			if (res.success) {

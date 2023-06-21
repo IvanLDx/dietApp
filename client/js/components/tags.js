@@ -33,6 +33,7 @@ function removeTag() {
 
 		$.ajax({
 			url: url,
+			method: 'GET',
 			data: {
 				state: state,
 				'tag-id': tagID
@@ -41,6 +42,7 @@ function removeTag() {
 				if (res.success) {
 					$.ajax({
 						url: url,
+						method: 'GET',
 						data: { state: 'RefreshList' },
 						success: (res) => {
 							$('.js-tag-container').html(res);

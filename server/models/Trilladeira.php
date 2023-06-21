@@ -29,6 +29,17 @@ class Trilladeira {
         return getDishListSeasonFiles($url);
     }
 
+    public function sortByName($array) {
+        $tagNames = [];
+        foreach ($array as $tag) {
+            $tagNames[] = strtolower($tag->name);
+        }
+
+        array_multisort($tagNames, $array);
+
+        return $array;
+    }
+
     function getPageName($rawFileName) {
         return str_replace('.php', '', basename($rawFileName));
     }
