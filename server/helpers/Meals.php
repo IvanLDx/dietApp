@@ -59,7 +59,7 @@ function generateCalendar($res) {
     array_splice($allDishes, 9);
     $weeklyTableFile = '../../data/weeklyTable.json';
     $tld->saveJSONFile($allDishes, $weeklyTableFile);
-    $svgUrl = '../../client/static/svg';
+    $svgUrl = '../../clientV' . $clientVersion . '/static/svg';
 
     require('../../templates/weeklyMeals/weeklyTable.php');
 }
@@ -113,7 +113,7 @@ function swapDishes($res) {
 
     $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
 
-    $svgUrl = '../../client/static/svg';
+    $svgUrl = '../../clientV<?=$clientVersion?>/static/svg';
     $allDishes = $weeklyTable;
     
     require('../../templates/weeklyMeals/weeklyTable.php');
@@ -132,7 +132,7 @@ function copyDish($res) {
 
     $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
 
-    $svgUrl = '../../client/static/svg';
+    $svgUrl = '../../clientV<?=$clientVersion?>/static/svg';
     $allDishes = $weeklyTable;
     
     require('../../templates/weeklyMeals/weeklyTable.php');
@@ -162,7 +162,7 @@ function modifySearchedDish($res) {
 
     $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
 
-    $svgUrl = '../../client/static/svg';
+    $svgUrl = '../../clientV<?=$clientVersion?>/static/svg';
     $allDishes = $weeklyTable;
     $res->weeklyTable = $weeklyTable;
     $res->selectedToModify = $selectedToModify;

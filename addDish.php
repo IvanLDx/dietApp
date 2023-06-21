@@ -24,7 +24,7 @@ $currentPageName = $tld->getPageName(__FILE__);
 
             <div class="dish-list js-dish-list">
                 <?php
-                $svgFolder = "$root/client/static/svg";
+                $svgFolder = "$root/clientV$clientVersion/static/svg";
                 $ico = (object)[
                     "modify" => "$svgFolder/modify.svg",
                     "remove" => "$svgFolder/remove.svg"

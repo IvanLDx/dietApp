@@ -101,7 +101,7 @@ function removeTag($res) {
 function refreshTags() {
     $fileUrl = $GLOBALS['fileUrl'];
     $tags = json_decode(file_get_contents($fileUrl));
-    $iconUrl = '../../client/static/svg/close.svg';
+    $iconUrl = '../../clientV' . $clientVersion . '/static/svg/close.svg';
 
     $templateUrl = '../../templates';
     require("$templateUrl/tags/list.php");

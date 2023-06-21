@@ -13,14 +13,14 @@
 
                 <div class="tags-container">
                     <label for="tag-check-modify" class="span js-open-tag-modal-modify">
-                        <?= file_get_contents($root . "/client/static/svg/tag.svg") ?>
+                        <?= file_get_contents($root . "/clientV" . $clientVersion . "/static/svg/tag.svg") ?>
                     </label>
                     <input id="tag-check-modify" class="tag-check js-tag-check-modify" type="checkbox">
     
                     <div class="js-tags-modal-container tags-modal tags-modify-modal listed">
                         <?php
                         $tags = json_decode(file_get_contents($root . "/data/tags.json"));
-                        $iconUrl = "$root/client/static/svg/close.svg";
+                        $iconUrl = "$root/clientV" . $clientVersion . "/static/svg/close.svg";
 
                         $templateUrl = "$root/templates";
                         include "$templateUrl/tags/list.php";

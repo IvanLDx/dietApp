@@ -43,7 +43,7 @@ $currentPageName = $tld->getPageName(__FILE__);
             <ul class="js-table-list dish-list">
                 <?php
                     $allDishes = json_decode(file_get_contents($root . "/data/weeklyTable.json"));
-                    $svgUrl = "$root/client/static/svg";
+                    $svgUrl = "$root/clientV' . $clientVersion . '/static/svg";
                     include "$root/templates/weeklyMeals/weeklyTable.php";
                 ?>
             </ul>

@@ -155,10 +155,10 @@ function refreshList() {
     $dishList = $tld->getDishListSeasonFiles('../../data');
     $tags = json_decode(file_get_contents('../../data/tags.json'));
     $formattedTagListUrl = '../../templates/tags/formattedList.php';
-    $iconUrl = '../../client/static/svg/close.svg';
+    $iconUrl = '../../clientV' . $clientVersion . '/static/svg/close.svg';
     $ico = (object)[
-        "modify" => "../../client/static/svg/modify.svg",
-        "remove" => "../../client/static/svg/remove.svg"
+        "modify" => "../../clientV' . $clientVersion . '/static/svg/modify.svg",
+        "remove" => "../../clientV' . $clientVersion . '/static/svg/remove.svg"
     ];
     $currentPageName = 'addDish';
     require('../../templates/addDish/dishList.php');
