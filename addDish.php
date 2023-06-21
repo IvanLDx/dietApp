@@ -12,7 +12,7 @@ $currentPageName = $tld->getPageName(__FILE__);
 <html lang="en">
 <head>
     <?php include "$root/templates/head.php" ?>
-    <link rel="stylesheet" href="./client/<?=$clientVersion?>/addDish.css">
+    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/addDish.css">
     <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/tags.css">
     <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/modifyModal.css">
     <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/removePopup.css">
