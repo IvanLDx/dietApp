@@ -3,6 +3,7 @@ $root = dirname(__FILE__);
 include "$root/server/models/Trilladeira.php";
 $tld = new Trilladeira();
 $clientVersion = $tld->getJSONFile("clientVersion");
+$date = getdate();
 ?>
 
 <!DOCTYPE html>

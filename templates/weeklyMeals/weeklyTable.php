@@ -7,15 +7,40 @@ $days = [
     'Xoves',
     'Venres'
 ];
+
+function getCurrentDate($date) {
+    return [$date['wday'], $date['hours']];
+}
+
+function getDinnerGone($date) {
+    return getCurrentDate($date)[1] > 16;
+}
+
+function getLunchGone($date, $i) {
+    return getCurrentDate($date)[0] > (($i + 1) / 2);
+}
+
+function getMealGone($date, $i, $currentDay) {
+    $dayGone = getLunchGone($date, $i);
+    $lunchGone = getLunchGone($date, $i) && getDinnerGone($date) && intval($currentDay) * 2 === $i;
+    return $dayGone || $lunchGone;
+}
+
 for($i = 0; $i < $maxMealsPerWeek; $i++) {
     $dish = $allDishes[$i];
     $currentDay = $i / 2;
     $isLockedDish = isset($dish->locked);
 
+    if (isset($date)) {
+        $mealGone = getMealGone($date, $i, $currentDay) ? 'meal-done' : '';
+    } else {
+        $mealGone = '';
+    }
+
     if (floor($currentDay) == ($currentDay)) { ?>
         <p><?=$days[$currentDay]?></p>
     <?php } ?>
-    <li class="js-dish-element-list dish-element-list <?=$isLockedDish ? 'locked' : ''?>"
+    <li class="js-dish-element-list dish-element-list <?=$isLockedDish ? 'locked' : ''?>  <?=$mealGone?>"
         data-id="<?=$dish->id?>"
         data-name="<?=$dish->name?>"
         data-tags="<?=$dish->tags?>"

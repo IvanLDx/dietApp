@@ -85,7 +85,7 @@
     .dish-list .dish-element-list .controls,
     .dish-list-modal .dish-element-list .select {
         display: block;
-        float: none;
+        position: static;
         text-align: center;
     }
 
