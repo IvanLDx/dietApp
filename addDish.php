@@ -12,10 +12,10 @@ $currentPageName = $tld->getPageName(__FILE__);
 <html lang="en">
 <head>
     <?php include "$root/templates/head.php" ?>
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/addDish.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/tags.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/modifyModal.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/removePopup.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/addDish.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/tags.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/modifyModal.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/removePopup.css">
 </head>
 <body>
     <div class="js-page page" data-page-name="<?=$currentPageName?>">
@@ -24,7 +24,7 @@ $currentPageName = $tld->getPageName(__FILE__);
 
             <div class="dish-list js-dish-list">
                 <?php
-                $svgFolder = "$root/clientV$clientVersion/static/svg";
+                $svgFolder = "$root/client/static/svg";
                 $ico = (object)[
                     "modify" => "$svgFolder/modify.svg",
                     "remove" => "$svgFolder/remove.svg"
@@ -41,7 +41,7 @@ $currentPageName = $tld->getPageName(__FILE__);
         <?php include "$root/templates/components/removePopup.php" ?>
     </div>
 
-    <script type="module" src="./clientV<?=$clientVersion?>/js/main.js"></script>
-    <script type="module" src="./clientV<?=$clientVersion?>/js/addDish.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/main.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/addDish.js"></script>
 </body>
 </html>

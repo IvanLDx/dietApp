@@ -12,11 +12,11 @@ $currentPageName = $tld->getPageName(__FILE__);
 <html lang="en">
 <head>
     <?php include "$root/templates/head.php" ?>
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/tags.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/weeklyMeals.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/modifyModal.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/removePopup.css">
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/components/dishListModal.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/tags.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/weeklyMeals.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/modifyModal.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/removePopup.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/dishListModal.css">
 </head>
 <body>
     <div class="js-page page" data-page-name="<?=$currentPageName?>">
@@ -43,7 +43,7 @@ $currentPageName = $tld->getPageName(__FILE__);
             <ul class="js-table-list dish-list">
                 <?php
                     $allDishes = json_decode(file_get_contents($root . "/data/weeklyTable.json"));
-                    $svgUrl = "$root/clientV' . $clientVersion . '/static/svg";
+                    $svgUrl = "$root/client/static/svg";
                     include "$root/templates/weeklyMeals/weeklyTable.php";
                 ?>
             </ul>
@@ -54,7 +54,7 @@ $currentPageName = $tld->getPageName(__FILE__);
         <?php include "$root/templates/components/removePopup.php"; ?>
     </div>
 
-    <script type="module" src="./clientV<?=$clientVersion?>/js/main.js"></script>
-    <script type="module" src="./clientV<?=$clientVersion?>/js/weeklyMeals.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/main.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/weeklyMeals.js"></script>
 </body>
 </html>

@@ -65,36 +65,37 @@ function generateCalendar($res) {
 }
 
 function modifyDish($res) {
-    $tld = new Trilladeira();
-    $dishID = $_REQUEST['dishID'];
-    $dishPos = $_REQUEST['dishPos'];
-    $weeklyTableUrl = '../../data/weeklyTable.json';
-    $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
-    $allDishes = $tld->mergeSeasonDishes($_REQUEST['seasons']);
+    // $tld = new Trilladeira();
+    // $dishID = $_REQUEST['dishID'];
+    // $dishPos = $_REQUEST['dishPos'];
+    // $weeklyTableUrl = '../../data/weeklyTable.json';
+    // $weeklyTable = json_decode(file_get_contents($weeklyTableUrl));
+    // $allDishes = $tld->mergeSeasonDishes($_REQUEST['seasons']);
 
-    $i = 0;
-    $dishExistsOnTable = true;
-    while ($i < count($allDishes) && $dishExistsOnTable) {
-        $dishExistsOnTable = false;
-        $dishToAdd = $allDishes[$i];
+    // $i = 0;
+    // $dishExistsOnTable = true;
+    // while ($i < count($allDishes) && $dishExistsOnTable) {
+    //     $dishExistsOnTable = false;
+    //     $dishToAdd = $allDishes[$i];
 
-        foreach($weeklyTable as $keyTableDish => $tableDish) {
-            if ($tableDish->id === $dishToAdd->id) {
-                $dishExistsOnTable = true;
-                break;
-            }
-        }
-        if ($dishExistsOnTable) {
-            $i++;
-        }
-    }
+    //     foreach($weeklyTable as $keyTableDish => $tableDish) {
+    //         if ($tableDish->id === $dishToAdd->id) {
+    //             $dishExistsOnTable = true;
+    //             break;
+    //         }
+    //     }
+    //     if ($dishExistsOnTable) {
+    //         $i++;
+    //     }
+    // }
 
-    $res->newDish = $allDishes[$i];
-    array_splice($weeklyTable, $dishPos, 1, array($res->newDish));
-    $res->success = true;
+    // $res->newDish = $allDishes[$i];
+    // array_splice($weeklyTable, $dishPos, 1, array($res->newDish));
+    // $res->success = true;
 
-    $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
+    // $tld->saveJSONFile($weeklyTable, $weeklyTableUrl);
 
+    $res->asd = 'asd';
     echo json_encode($res);
 }
 
