@@ -8,22 +8,18 @@ $days = [
     'Venres'
 ];
 
-function getCurrentDate($date) {
-    return [$date['wday'], $date['hours']];
-}
-
 function getDinnerGone($date) {
-    return getCurrentDate($date)[1] > 16;
+    return $date['hours'] > 16;
 }
 
-function getLunchGone($date, $i) {
-    return getCurrentDate($date)[0] > (($i + 1) / 2);
+function getLunchGone($date, $currentDay) {
+    return $date['wday'] > $currentDay + 1;
 }
 
 function getMealGone($date, $i, $currentDay) {
-    $dayGone = getLunchGone($date, $i);
-    $lunchGone = getLunchGone($date, $i) && getDinnerGone($date) && intval($currentDay) * 2 === $i;
-    return $dayGone || $lunchGone;
+    $dayGone = getLunchGone($date, $currentDay);
+    $dinnerGone = $date['wday'] > $currentDay && getDinnerGone($date) && $currentDay === intval($i / 2);
+    return $dayGone || $dinnerGone;
 }
 
 for($i = 0; $i < $maxMealsPerWeek; $i++) {
