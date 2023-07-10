@@ -17,8 +17,14 @@
     top: 100%;
 }
 
+.dish-list-modal .dish-element-list {
+    position: relative;
+}
+
 .dish-list-modal .select {
-    float: right;
+    position: absolute;
+    top: 6px;
+    right: 8px;
     background-color: var(--blue);
     outline: 3px solid var(--blue);
     padding: 0 1rem;

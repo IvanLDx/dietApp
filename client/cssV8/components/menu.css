@@ -20,12 +20,12 @@
 .menu-bottom__link {
     text-decoration: none;
     display: block;
-    padding: 1rem;
+    padding-top: 4px;
     color: var(--white);
 }
 
 .menu-bottom svg {
-    width: 40px;
+    width: 30px;
 }
 
 .menu-bottom svg path {

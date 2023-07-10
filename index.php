@@ -10,7 +10,7 @@ $date = getdate();
 <html lang="en">
 <head>
     <?php include "$root/templates/head.php" ?>
-    <link rel="stylesheet" href="./clientV<?=$clientVersion?>/css/home.css">
+    <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/home.css">
 </head>
 <body>
     <div class="js-page page">
@@ -27,6 +27,6 @@ $date = getdate();
         <?php include "$root/templates/menu.php" ?>
     </div>
 
-    <script type="module" src="./clientV<?=$clientVersion?>/js/main.js"></script>
+    <script type="module" src="./client/jsV<?=$clientVersion?>/main.js"></script>
 </body>
 </html>

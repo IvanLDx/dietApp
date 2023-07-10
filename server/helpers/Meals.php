@@ -26,6 +26,9 @@ switch ($state) {
     case 'ModifySearchedDish':
         modifySearchedDish($res);
         break;
+    case 'LockDish':
+        lockDish($res);
+        break;
     default:
         $res->message = "Non se recoñece a declaración $state.";
         echo json_encode($res);
@@ -167,6 +170,39 @@ function modifySearchedDish($res) {
     $res->weeklyTable = $weeklyTable;
     $res->selectedToModify = $selectedToModify;
     $res->copySelected = $copySelected;
+
+    require('../../templates/weeklyMeals/weeklyTable.php');
+}
+
+function lockDish($res) {
+    $tld = new Trilladeira();
+    $lockedDishes = json_decode($_REQUEST['lockedDishes']);
+    $weeklyTableUrl = '../../data/weeklyTable.json';
+    $allDishes = json_decode(file_get_contents($weeklyTableUrl));
+
+    switch (count($lockedDishes)) {
+        case 0:
+            break;
+        default:
+            foreach($allDishes as $dishKey => $dish) {
+                $isCurrentDishLocked = false;
+                foreach($lockedDishes as $key => $lockedDish) {
+                    if ($lockedDish->id === $dish->id) {
+                        $isCurrentDishLocked = true;
+                    }
+                }
+                if ($isCurrentDishLocked) {
+                    $dish->locked = true;
+                } else {
+                    if (isset($dish->locked)) {
+                        unset($dish->locked);
+                    }
+                }
+            }
+            break;
+    }
+    $tld->saveJSONFile($allDishes, $weeklyTableUrl);
+    $svgUrl = '../../client/static/svg';
 
     require('../../templates/weeklyMeals/weeklyTable.php');
 }
