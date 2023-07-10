@@ -25,7 +25,9 @@ $currentPageName = $tld->getPageName(__FILE__);
                 data-action-modify-dish="Meals-ModifyDish"
                 data-action-swap-dishes="Meals-SwapDishes"
                 data-action-copy-dish="Meals-CopyDish"
-                data-action-modify-searched-dish="Meals-ModifySearchedDish"
+                data-action-modify-searched-dish="Meals-Modify
+                SearchedDish"
+                data-action-lock-dish="Meals-LockDish"
                 class="js-generate-calendar">
                 <?php
                 $section = "weeklyMeals";

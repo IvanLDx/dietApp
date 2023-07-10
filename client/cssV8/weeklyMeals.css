@@ -84,7 +84,7 @@
 @media (max-width: 476px) {
     .dish-list .dish-element-list .controls,
     .dish-list-modal .dish-element-list .select {
-        display: block;
+        display: flex;
         position: static;
         text-align: center;
     }
@@ -92,5 +92,38 @@
     .dish-list-modal .dish-element-list .select {
         margin-top: 10px;
         padding: 0;
+    }
+
+    .generated-table .controls {
+        float: initial;
+    }
+
+    .generated-table .controls .button {
+        flex: 1;
+        margin: 0;
+        margin-bottom: -7px;
+        position: relative;
+    }
+
+    .generated-table .controls .button::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 42px;
+        left: 0;
+        bottom: 0;
+    }
+
+    .dish-list .dish-element-list {
+        padding-top: 0;
+        margin-bottom: 2px;
+    }
+
+    .generated-table .dish-element-list svg {
+        height: 16px;
+    }
+
+    .dish-list p {
+        font-size: 12px;
     }
 }

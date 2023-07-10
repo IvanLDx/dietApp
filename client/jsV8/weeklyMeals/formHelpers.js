@@ -16,6 +16,23 @@ function serializeSeasons(formData) {
 	formData.seasons = selectedSeasons;
 }
 
+function getLockedDishes() {
+	let lockedDishes = [];
+	let $lockedDishes = $('.js-dish-element-list');
+	$lockedDishes.forEach(($dish, i) => {
+		if ($dish.classList.contains('locked')) {
+			lockedDishes.push({
+				pos: i,
+				id: $dish.attr('data-id'),
+				name: $dish.attr('data-name'),
+				tags: $dish.attr('data-tags')
+			});
+		}
+	});
+
+	return JSON.stringify(lockedDishes);
+}
+
 function submitReplaceForm(params) {
 	let data = {
 		firstSelectedDish: JSON.stringify({
@@ -62,7 +79,24 @@ formHelpers.submitGenerateTable = function (e, form) {
 
 	formData.lockedDishes = JSON.stringify(lockedDishes);
 
-	e.preventDefault();
+	$.ajax({
+		url: $form.url,
+		method: 'GET',
+		data: formData,
+		success: (res) => {
+			$('.js-table-list').html(res);
+		}
+	});
+};
+
+formHelpers.saveCurrentTable = function (e, form) {
+	let formData = $.ajax.serialize(form);
+	let $form = $(form);
+	[formData.url, formData.state] = $form
+		.attr('data-action-lock-dish')
+		.split('-');
+	formData.lockedDishes = getLockedDishes();
+
 	$.ajax({
 		url: $form.url,
 		method: 'GET',
@@ -142,4 +176,17 @@ formHelpers.submitModifySearchedDish = function (e, form) {
 		.split('-');
 
 	submitReplaceForm(params);
+};
+
+formHelpers.addLockDish = function (e, form) {
+	let params = {
+		$firstSelectedDish: e.closest('.js-dish-element-list'),
+		data: {}
+	};
+	let $form = $(form);
+	[params.data.url, params.data.state] = $form
+		.attr('data-action-lock-dish')
+		.split('-');
+
+	formHelpers.submitGenerateTable(e, form);
 };

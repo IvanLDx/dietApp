@@ -5,12 +5,14 @@ import { popup } from './components/modals.js';
 let generateCalendarForm = '.js-generate-calendar';
 
 $(generateCalendarForm)[0].onsubmit = (e) => {
+	e.preventDefault();
 	formHelpers.submitGenerateTable(e, generateCalendarForm);
 };
 
 $.click('.js-locker', (e) => {
 	let $dish = e.closest('.js-dish-element-list');
 	$dish.classList.toggle('locked');
+	formHelpers.saveCurrentTable(e, generateCalendarForm);
 });
 
 $.click('.js-reset', () => {
