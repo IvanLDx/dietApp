@@ -180,27 +180,23 @@ function lockDish($res) {
     $weeklyTableUrl = '../../data/weeklyTable.json';
     $allDishes = json_decode(file_get_contents($weeklyTableUrl));
 
-    switch (count($lockedDishes)) {
-        case 0:
-            break;
-        default:
-            foreach($allDishes as $dishKey => $dish) {
-                $isCurrentDishLocked = false;
-                foreach($lockedDishes as $key => $lockedDish) {
-                    if ($lockedDish->id === $dish->id) {
-                        $isCurrentDishLocked = true;
-                    }
-                }
-                if ($isCurrentDishLocked) {
-                    $dish->locked = true;
-                } else {
-                    if (isset($dish->locked)) {
-                        unset($dish->locked);
-                    }
-                }
+    foreach($allDishes as $dishKey => $dish) {
+        $isCurrentDishLocked = false;
+        foreach($lockedDishes as $lockedDish) {
+            if ($lockedDish->id === $dish->id && $dishKey === $lockedDish->pos) {
+                $isCurrentDishLocked = true;
             }
-            break;
+        }
+        if ($isCurrentDishLocked) {
+            $dish->locked = true;
+            $res->asd[] = $dish->name;
+        } else {
+            if (isset($dish->locked)) {
+                unset($dish->locked);
+            }
+        }
     }
+
     $tld->saveJSONFile($allDishes, $weeklyTableUrl);
     $svgUrl = '../../client/static/svg';
 
