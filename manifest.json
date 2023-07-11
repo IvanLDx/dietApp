@@ -1,0 +1,33 @@
+{
+	"name":"DálleLume Meals",
+	"short_name":"Meals",
+	"start_url":"index.php",
+	"display":"standalone",
+	"background_color":"#5900b3",
+	"theme_color":"black",
+	"scope": ".",
+	"description":"Meals for the week.",
+    "icons":[
+        {
+            "src":"images/meals-icon-32x32.png",                     
+            "sizes":"32x32",
+            "type":"image/png"
+        },
+        {
+            "src":"images/meals-icon-64x64.png",
+            "sizes":"64x64",
+            "type":"image/png"
+        },
+        {
+            "src":"images/meals-icon-128x128.png",                     
+            "sizes":"128x128",
+            "type":"image/png"
+        },
+        {
+            "src":"images/meals-icon-256x256.png",
+            "sizes":"256x256",
+            "type":"image/png"
+        }
+    ]
+	
+}

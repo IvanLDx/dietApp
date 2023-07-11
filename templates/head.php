@@ -6,3 +6,10 @@
 <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/master.css">
 <link rel="stylesheet" href="./client/cssV<?=$clientVersion?>/components/menu.css">
 <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+<!-- Meta Tags required for Progressive Web App -->
+<meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+<meta name="theme-color" content="black">
+ 
+<!-- Manifest File link -->
+<link rel="manifest" href="manifest.json">
